@@ -12,6 +12,6 @@ export class Calendar {
   }
 
   private generateCurrentWeekInfo(): string {
-    return `${this.date.getDate()}   3   4   5   6   7   8`
+    return ` ${this.date.getDate()}   3   4   5   6   7   8`
   }
 }
