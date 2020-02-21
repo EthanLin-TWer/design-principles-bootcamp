@@ -6,9 +6,8 @@ export class Calendar {
   }
 
   public printWeekInfoInText(): string {
-    return `
-Su  Mo  Tu  Wn  Th  Fr  Sa
- 2   3   4   5   6   7   8   
-    `
+    const header: string = 'Su  Mo  Tu  Wn  Th  Fr  Sa'
+    const content: string = '2   3   4   5   6   7   8'
+    return `${header}\n${content}`
   }
 }
