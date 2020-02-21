@@ -7,7 +7,11 @@ export class Calendar {
 
   public printWeekInfoInText(): string {
     const header: string = 'Su  Mo  Tu  Wn  Th  Fr  Sa'
-    const content: string = `${this.date.getDate()}   3   4   5   6   7   8`
+    const content: string = this.generateCurrentWeekInfo()
     return `${header}\n${content}`
+  }
+
+  private generateCurrentWeekInfo(): string {
+    return `${this.date.getDate()}   3   4   5   6   7   8`
   }
 }
