@@ -5,7 +5,7 @@ describe('Calendar', () => {
     const result = new Calendar('2020-02-02').printWeekInfoInText()
 
     expect(result).toEqual(
-      'Su  Mo  Tu  Wn  Th  Fr  Sa\n 2   3   4   5   6   7   8'
+      '日\t一\t二\t三\t四\t五\t六\n2   3   4   5   6   7   8'
     )
   })
 })

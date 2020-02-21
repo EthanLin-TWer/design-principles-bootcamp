@@ -6,7 +6,7 @@ export class Calendar {
   }
 
   public printWeekInfoInText(): string {
-    const header: string = 'Su  Mo  Tu  Wn  Th  Fr  Sa'
+    const header: string = '日\t一\t二\t三\t四\t五\t六'
     const content: string = this.generateCurrentWeekInfo()
     return `${header}\n${content}`
   }
@@ -16,8 +16,8 @@ export class Calendar {
       Array.from({ length: 7 })
         .fill(this.date.getDate())
         // @ts-ignore
-        .map((date, i) => ` ${date + i}`)
-        .join('  ')
+        .map((date, i) => `${date + i}`)
+        .join('   ')
     )
   }
 }
