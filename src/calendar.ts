@@ -36,31 +36,22 @@ export class Calendar {
 
   // can go to date objects
   private getLastMonthTotalDays() {
-    const lastMonthTotalDays = {
-      1: 31,
-      2: 28,
-      3: 31,
-      4: 30,
-      5: 31,
-      6: 30,
-      7: 31,
-      8: 31,
-      9: 30,
-      10: 31,
-      11: 30,
-      12: 31,
-    }
-
-    if (this.getCurrentMonth() === 2 && this.isLeapYear()) {
+    if (this.isFebruary() && this.isLeapYear()) {
       return 29
     }
 
+    const lastMonthTotalDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     return lastMonthTotalDays[this.getCurrentMonth()]
   }
 
   // can go to date objects
+  private isFebruary() {
+    return this.getCurrentMonth() + 1 === 2
+  }
+
+  // can go to date objects
   private getCurrentMonth() {
-    return this.date.getMonth() + 1
+    return this.date.getMonth()
   }
 
   // can be implemented with date libraries
