@@ -25,15 +25,22 @@ export class Calendar {
   }
 
   private getNextDay = (date: number, i: number) => {
+    // eslint-disable-next-line no-invalid-this
+    if (date + i <= this.getLastMonthTotalDays()) {
+      return date + i
+    }
+
+    // eslint-disable-next-line no-invalid-this
+    return (date + i) % this.getLastMonthTotalDays()
+  }
+
+  private getLastMonthTotalDays() {
     const lastMonthTotalDays = {
       1: 31,
       2: 29,
     }
-    // eslint-disable-next-line no-invalid-this
-    if (date + i <= lastMonthTotalDays[this.date.getMonth() + 1]) {
-      return date + i
-    }
-    // eslint-disable-next-line no-invalid-this
-    return (date + i) % lastMonthTotalDays[this.date.getMonth() + 1]
+
+    const currentMonth = this.date.getMonth() + 1
+    return lastMonthTotalDays[currentMonth]
   }
 }
