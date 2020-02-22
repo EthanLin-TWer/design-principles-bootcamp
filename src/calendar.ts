@@ -17,8 +17,10 @@ export class Calendar {
       Array.from({ length: 7 })
         .fill(this.date.getDate() - dayOfTheWeek)
         // @ts-ignore
-        .map((date, i) => `${date + i}`)
-        .join('   ')
+        .map((date, i) => date + i)
+        .map((date) => `${date}${date >= 10 ? '  ' : '   '}`)
+        .join('')
+        .trimEnd()
     )
   }
 }
