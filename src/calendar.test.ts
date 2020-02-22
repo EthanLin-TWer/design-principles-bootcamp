@@ -147,5 +147,13 @@ describe('Calendar', () => {
         '日\t一\t二\t三\t四\t五\t六\n26  27  28  29  30  31  1'
       )
     })
+
+    it('should print February days when date is in the first week of March', () => {
+      const result = new Calendar('2019-03-02').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n24  25  26  27  28  1   2'
+      )
+    })
   })
 })
