@@ -34,19 +34,28 @@ export class Calendar {
     return (date + i) % this.getLastMonthTotalDays()
   }
 
+  // can go to date objects
   private getLastMonthTotalDays() {
     const lastMonthTotalDays = {
       1: 31,
       2: 28,
     }
 
-    const currentMonth = this.date.getMonth() + 1
-    const currentYear = this.date.getFullYear()
-    const isLeapYear = currentYear % 4 === 0 && currentYear !== 1900
-    if (currentMonth === 2 && isLeapYear) {
+    if (this.getCurrentMonth() === 2 && this.isLeapYear()) {
       return 29
     }
 
-    return lastMonthTotalDays[currentMonth]
+    return lastMonthTotalDays[this.getCurrentMonth()]
+  }
+
+  // can go to date objects
+  private getCurrentMonth() {
+    return this.date.getMonth() + 1
+  }
+
+  // can be implemented with date libraries
+  private isLeapYear() {
+    const currentYear = this.date.getFullYear()
+    return currentYear % 4 === 0 && currentYear !== 1900
   }
 }
