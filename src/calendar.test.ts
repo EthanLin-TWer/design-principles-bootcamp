@@ -34,7 +34,7 @@ describe('Calendar', () => {
       )
     })
 
-    it('should print Feb 29th when date is in the last week of Feb given current year is a leap year', () => {
+    it('should print Feb 29th when date is in the last week of Feb given current year is a leap year given year is divisible by 4', () => {
       const result = new Calendar('2016-02-29').printCurrentWeek()
 
       expect(result).toEqual(
@@ -42,11 +42,19 @@ describe('Calendar', () => {
       )
     })
 
-    it('should print Feb 28th when date is in the last week of Feb given current year is not a leap year', () => {
+    it('should print Feb 28th when date is in the last week of Feb given current year is not a leap year given year is not divisible by 4', () => {
       const result = new Calendar('2019-02-28').printCurrentWeek()
 
       expect(result).toEqual(
         '日\t一\t二\t三\t四\t五\t六\n24  25  26  27  28  1   2'
+      )
+    })
+
+    it('should print Feb 28th when date is in the last week of Feb given current year is not a leap year given year is divisible by 4 but not divisible by 400', () => {
+      const result = new Calendar('1900-02-28').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n25  26  27  28  1   2   3'
       )
     })
   })
