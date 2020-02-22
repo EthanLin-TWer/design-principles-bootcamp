@@ -56,6 +56,9 @@ export class Calendar {
   // can be implemented with date libraries
   private isLeapYear() {
     const currentYear = this.date.getFullYear()
-    return currentYear % 4 === 0 && currentYear !== 1900
+    return (
+      currentYear % 400 === 0 ||
+      (currentYear % 4 === 0 && currentYear % 100 !== 0)
+    )
   }
 }
