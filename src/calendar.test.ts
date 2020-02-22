@@ -138,4 +138,14 @@ describe('Calendar', () => {
       )
     })
   })
+
+  describe('printing days of previous month', () => {
+    it('should print January days when date is in the first week of February', () => {
+      const result = new Calendar('2020-02-01').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n26  27  28  29  30  31  1'
+      )
+    })
+  })
 })

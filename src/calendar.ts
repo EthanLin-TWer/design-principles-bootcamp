@@ -25,28 +25,38 @@ export class Calendar {
   }
 
   private getNextDay = (date: number, i: number) => {
+    if (date + i <= 0) {
+      // eslint-disable-next-line no-invalid-this
+      return this.getTotalDaysOf(this.getPreviousMonth()) + date + i
+    }
+
     // eslint-disable-next-line no-invalid-this
-    if (date + i <= this.getLastMonthTotalDays()) {
+    if (date + i <= this.getTotalDaysOf(this.getCurrentMonth())) {
       return date + i
     }
 
     // eslint-disable-next-line no-invalid-this
-    return (date + i) % this.getLastMonthTotalDays()
+    return (date + i) % this.getTotalDaysOf(this.getCurrentMonth())
   }
 
   // can go to date objects
-  private getLastMonthTotalDays() {
-    if (this.isFebruary() && this.isLeapYear()) {
+  private getTotalDaysOf(currentMonth: number) {
+    if (this.isFebruary(currentMonth) && this.isLeapYear()) {
       return 29
     }
 
     const lastMonthTotalDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    return lastMonthTotalDays[this.getCurrentMonth()]
+    return lastMonthTotalDays[currentMonth]
   }
 
   // can go to date objects
-  private isFebruary() {
-    return this.getCurrentMonth() + 1 === 2
+  private getPreviousMonth() {
+    return this.getCurrentMonth() - 1
+  }
+
+  // can go to date objects
+  private isFebruary(month: number) {
+    return month + 1 === 2
   }
 
   // can go to date objects
