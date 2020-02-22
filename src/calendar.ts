@@ -5,7 +5,7 @@ export class Calendar {
     this.date = new Date(date)
   }
 
-  public printWeekInfoInText(): string {
+  public printCurrentWeek(): string {
     const header: string = '日\t一\t二\t三\t四\t五\t六'
     const content: string = this.generateCurrentWeekInfo()
     return `${header}\n${content}`
