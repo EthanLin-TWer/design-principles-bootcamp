@@ -58,4 +58,12 @@ describe('Calendar', () => {
       )
     })
   })
+
+  it('should print Apr days when date is in the last week of Mar', () => {
+    const result = new Calendar('2020-03-30').printCurrentWeek()
+
+    expect(result).toEqual(
+      '日\t一\t二\t三\t四\t五\t六\n29  30  31  1   2   3   4'
+    )
+  })
 })

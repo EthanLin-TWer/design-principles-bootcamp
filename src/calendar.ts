@@ -39,6 +39,7 @@ export class Calendar {
     const lastMonthTotalDays = {
       1: 31,
       2: 28,
+      3: 31,
     }
 
     if (this.getCurrentMonth() === 2 && this.isLeapYear()) {
