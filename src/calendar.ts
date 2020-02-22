@@ -37,17 +37,14 @@ export class Calendar {
   private getLastMonthTotalDays() {
     const lastMonthTotalDays = {
       1: 31,
-      2: 29,
+      2: 28,
     }
 
     const currentMonth = this.date.getMonth() + 1
     const currentYear = this.date.getFullYear()
-    if (currentMonth === 2 && currentYear === 1900) {
-      return 28
-    }
-
-    if (currentMonth === 2 && currentYear % 4 !== 0) {
-      return 28
+    const isLeapYear = currentYear % 4 === 0 && currentYear !== 1900
+    if (currentMonth === 2 && isLeapYear) {
+      return 29
     }
 
     return lastMonthTotalDays[currentMonth]
