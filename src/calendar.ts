@@ -12,19 +12,10 @@ export class Calendar {
   }
 
   private generateCurrentWeekInfo(): string {
-    if (this.date.getDate() === 2) {
-      return (
-        Array.from({ length: 7 })
-          .fill(this.date.getDate())
-          // @ts-ignore
-          .map((date, i) => `${date + i}`)
-          .join('   ')
-      )
-    }
-
+    const dayOfTheWeek = this.date.getDay()
     return (
       Array.from({ length: 7 })
-        .fill(this.date.getDate() - 1)
+        .fill(this.date.getDate() - dayOfTheWeek)
         // @ts-ignore
         .map((date, i) => `${date + i}`)
         .join('   ')
