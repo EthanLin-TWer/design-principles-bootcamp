@@ -1,7 +1,7 @@
 import { Calendar } from './calendar'
 
 describe('Calendar', () => {
-  it('should return text representation of calendar of the week', () => {
+  it('should return text representation of calendar of the week when date is the first day of the week', () => {
     const result = new Calendar('2020-02-02').printWeekInfoInText()
 
     expect(result).toEqual(
