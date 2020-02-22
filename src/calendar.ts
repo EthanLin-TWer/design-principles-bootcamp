@@ -24,10 +24,16 @@ export class Calendar {
     )
   }
 
-  private getNextDay(date: number, i: number) {
-    if (date + i > 31) {
-      return 1
+  private getNextDay = (date: number, i: number) => {
+    const lastMonthTotalDays = {
+      1: 31,
+      2: 29,
     }
-    return date + i
+    // eslint-disable-next-line no-invalid-this
+    if (date + i <= lastMonthTotalDays[this.date.getMonth() + 1]) {
+      return date + i
+    }
+    // eslint-disable-next-line no-invalid-this
+    return (date + i) % lastMonthTotalDays[this.date.getMonth() + 1]
   }
 }
