@@ -41,6 +41,10 @@ export class Calendar {
     }
 
     const currentMonth = this.date.getMonth() + 1
+    const currentYear = this.date.getFullYear()
+    if (currentMonth === 2 && currentYear % 4 !== 0) {
+      return 28
+    }
     return lastMonthTotalDays[currentMonth]
   }
 }

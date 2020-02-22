@@ -41,5 +41,13 @@ describe('Calendar', () => {
         '日\t一\t二\t三\t四\t五\t六\n28  29  1   2   3   4   5'
       )
     })
+
+    it('should print Feb 28th when date is in the last week of Feb given current year is not a leap year', () => {
+      const result = new Calendar('2019-02-28').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n24  25  26  27  28  1   2'
+      )
+    })
   })
 })
