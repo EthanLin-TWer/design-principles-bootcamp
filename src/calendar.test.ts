@@ -24,4 +24,14 @@ describe('Calendar', () => {
       '日\t一\t二\t三\t四\t五\t六\n9   10  11  12  13  14  15'
     )
   })
+
+  describe('printing days of next month', () => {
+    it('should print Feb days when date is in the last week of Jan', () => {
+      const result = new Calendar('2020-01-30').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n26  27  28  29  30  31  1'
+      )
+    })
+  })
 })

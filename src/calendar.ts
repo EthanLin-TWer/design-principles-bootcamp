@@ -17,10 +17,17 @@ export class Calendar {
       Array.from({ length: 7 })
         .fill(this.date.getDate() - dayOfTheWeek)
         // @ts-ignore
-        .map((date, i) => date + i)
+        .map(this.getNextDay)
         .map((date) => `${date}${date >= 10 ? '  ' : '   '}`)
         .join('')
         .trimEnd()
     )
+  }
+
+  private getNextDay(date: number, i: number) {
+    if (date + i > 31) {
+      return 1
+    }
+    return date + i
   }
 }
