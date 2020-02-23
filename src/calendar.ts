@@ -1,8 +1,12 @@
+import { DateUtil } from './date-util'
+
 export class Calendar {
   private readonly date: Date
+  private readonly dateUtil: DateUtil
 
   constructor(date: string) {
     this.date = new Date(date)
+    this.dateUtil = new DateUtil(date)
   }
 
   public printCurrentWeek(): string {
