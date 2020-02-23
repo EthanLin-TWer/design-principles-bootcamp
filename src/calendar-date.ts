@@ -3,24 +3,24 @@ import { Day } from './date-components/day'
 import { Year } from './date-components/year'
 
 export class CalendarDate {
-  private readonly date: Date
-  private readonly month: Month
-  private readonly year: Year
   private readonly day: Day
+  private readonly daysInTheWeek: number
 
   constructor(dateInYYYYmmDD: string) {
-    this.date = new Date(dateInYYYYmmDD)
-    this.month = Month.valueOf(this.date.getMonth() + 1)
-    this.year = new Year(this.date.getFullYear())
-    this.day = new Day(this.date.getDate(), this.month, this.year)
+    const date = new Date(dateInYYYYmmDD)
+    const year: Year = new Year(date.getFullYear())
+    const month: Month = Month.valueOf(date.getMonth() + 1)
+
+    this.day = new Day(date.getDate(), month, year)
+    this.daysInTheWeek = date.getDay()
   }
 
   public getFirstDayOfTheWeek(): CalendarDate {
-    const day = this.day.previous(this.date.getDay())
+    const day = this.day.previous(this.daysInTheWeek)
     return new CalendarDate(day.asYYYYmmDD())
   }
 
-  public getNextDay(howManyDays: number): Day {
-    return this.day.next(howManyDays)
+  public getNextDay(days: number): Day {
+    return this.day.next(days)
   }
 }

@@ -27,7 +27,7 @@ export class Day extends DateComponent {
 
   previous(fewDays: number): Day {
     const previousDay = this.value - fewDays
-    if (this.value - fewDays > 0) {
+    if (previousDay > 0) {
       return new Day(previousDay, this.month, this.year)
     }
 
