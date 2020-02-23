@@ -12,12 +12,12 @@ export class CalendarDate {
     this.date = new Date(dateInYYYYmmDD)
     this.year = new Year(this.date.getFullYear())
     this.month = Month.valueOf(this.date.getMonth() + 1)
-    this.day = new Day(this.date.getDate())
+    this.day = new Day(this.date.getDate(), this.month, this.year)
   }
 
   static of(year: Year, month: Month, day: number): CalendarDate {
     const MM = month.asMM()
-    const DD = new Day(day).asDD()
+    const DD = new Day(day, month, year).asDD()
     return new CalendarDate(`${year.getValue()}-${MM}-${DD}`)
   }
 
@@ -57,7 +57,7 @@ export class CalendarDate {
   }
 
   public getDate(): Day {
-    return new Day(this.date.getDate())
+    return this.day
   }
 
   private isGoingBackOneMonth() {

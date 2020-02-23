@@ -1,6 +1,16 @@
 import { DateComponent } from './date-component'
+import { Month } from './month'
+import { Year } from './year'
 
 export class Day extends DateComponent {
+  private month: Month
+  private year: Year
+  constructor(value: number, month: Month, year: Year) {
+    super(value)
+    this.month = month
+    this.year = year
+  }
+
   next(fewDays: number, totalDaysOfCurrentMonth: number) {
     const nextDay = this.value + fewDays
     if (nextDay <= totalDaysOfCurrentMonth) {
