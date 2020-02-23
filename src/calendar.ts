@@ -1,12 +1,10 @@
 import { DateUtil } from './date-util'
 
 export class Calendar {
-  private readonly date: Date
-  private readonly dateUtil: DateUtil
+  private readonly date: DateUtil
 
   constructor(date: string) {
-    this.date = new Date(date)
-    this.dateUtil = new DateUtil(date)
+    this.date = new DateUtil(date)
   }
 
   public printCurrentWeek(): string {
@@ -18,7 +16,7 @@ export class Calendar {
   private generateCurrentWeekInfo(): string {
     return (
       Array.from({ length: 7 })
-        .fill(this.dateUtil.getFirstDayOfTheWeek())
+        .fill(this.date.getFirstDayOfTheWeek())
         // @ts-ignore
         .map((date: DateUtil, i: number) => {
           return date.getNextDay(i).toString()
