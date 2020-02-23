@@ -121,10 +121,10 @@ export class DateUtil {
   }
 
   private isJanuary(): boolean {
-    return this.date.getMonth() + 1 === 1
+    return this.getCurrentMonth() === 1
   }
 
   private isDecember() {
-    return this.date.getMonth() + 1 === 12
+    return this.getCurrentMonth() === 12
   }
 }
