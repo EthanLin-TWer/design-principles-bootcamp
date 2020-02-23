@@ -51,8 +51,4 @@ export class Month extends DateComponent {
 
     return this.totalDays
   }
-
-  is(month: Month) {
-    return this.value === month.value
-  }
 }
