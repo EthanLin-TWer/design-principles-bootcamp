@@ -15,17 +15,15 @@ export class DateUtil {
   }
 
   public getFirstDayOfTheWeek(): DateUtil {
-    const dayOfTheWeek = this.date.getDay() + 1
     if (!this.isFirstWeekOfTheMonth()) {
       const year = this.date.getFullYear()
       const month = this.date.getMonth()
-      const day = this.date.getDate() - dayOfTheWeek + 1
+      const day = this.date.getDate() - this.date.getDay()
       return DateUtil.of(year, month, day)
     }
 
-    const offset = this.date.getDate() - dayOfTheWeek
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
-    const day = daysOfLastMonth + offset + 1
+    const day = daysOfLastMonth + this.date.getDate() - this.date.getDay()
     const fullYear = this.date.getFullYear()
     const month = this.getCurrentMonth() === 0 ? 12 : this.getCurrentMonth()
     const year = month === 12 ? fullYear - 1 : fullYear
