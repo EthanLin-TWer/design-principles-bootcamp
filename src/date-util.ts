@@ -15,26 +15,24 @@ export class DateUtil {
   }
 
   public getFirstDayOfTheWeek(): DateUtil {
+    const offset = this.date.getDate() - this.date.getDay()
     if (!this.isFirstWeekOfTheMonth()) {
-      const year = this.date.getFullYear()
-      const month = this.date.getMonth() + 1
-      const day = this.date.getDate() - this.date.getDay()
-      return DateUtil.of(year, month, day)
+      const year = this.getCurrentYear()
+      const month = this.getCurrentMonth()
+      return DateUtil.of(year, month, offset)
     }
 
     if (this.isJanuary()) {
       const daysOfLastMonth = this.getTotalDaysOf(12)
-      const day = daysOfLastMonth + this.date.getDate() - this.date.getDay()
-      const year = this.date.getFullYear() - 1
-      return DateUtil.of(year, 12, day)
+      const year = this.getLastYear()
+      return DateUtil.of(year, 12, daysOfLastMonth + offset)
     }
 
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
-    const day = daysOfLastMonth + this.date.getDate() - this.date.getDay()
-    const year = this.date.getFullYear()
-    const month = this.getCurrentMonth() - 1
+    const year = this.getCurrentYear()
+    const month = this.getPreviousMonth()
 
-    return DateUtil.of(year, month, day)
+    return DateUtil.of(year, month, daysOfLastMonth + offset)
   }
 
   private isFirstWeekOfTheMonth() {
@@ -90,6 +88,14 @@ export class DateUtil {
 
   private getCurrentMonth(): number {
     return this.date.getMonth() + 1
+  }
+
+  private getLastYear() {
+    return this.getCurrentYear() - 1
+  }
+
+  private getCurrentYear() {
+    return this.date.getFullYear()
   }
 
   private isFebruary(month: number) {
