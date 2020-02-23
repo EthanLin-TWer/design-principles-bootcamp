@@ -10,6 +10,15 @@ export class Day extends DateComponent {
     return nextDay - totalDaysOfCurrentMonth
   }
 
+  previous(fewDays: number, totalDaysOfPreviousMonth: number) {
+    const previousDay = this.value - fewDays
+    if (this.value - fewDays > 0) {
+      return previousDay
+    }
+
+    return previousDay + totalDaysOfPreviousMonth
+  }
+
   addTrailingSpaceForDaysBefore10th() {
     return this.value >= 10 ? this.value.toString() : `${this.value} `
   }

@@ -21,32 +21,23 @@ export class CalendarDate {
     return new CalendarDate(`${year.getValue()}-${MM}-${DD}`)
   }
 
-  private ofSameMonth(day: number): CalendarDate {
-    return CalendarDate.of(this.year, this.month, day)
-  }
-
-  private ofSameYear(month: Month, day: number): CalendarDate {
-    return CalendarDate.of(this.year, month, day)
-  }
-
   public getFirstDayOfTheWeek(): CalendarDate {
-    const offset = this.date.getDate() - this.date.getDay()
-    if (!this.isFirstWeekOfTheMonth()) {
-      return this.ofSameMonth(offset)
+    const daysOfLastMonth = this.month.previous().getTotalDays(this.year)
+    const day = this.day.previous(this.date.getDay(), daysOfLastMonth)
+
+    if (!this.isGoingBackOneMonth()) {
+      return CalendarDate.of(this.year, this.month, day)
     }
 
-    if (this.month === Month.JANUARY) {
-      const daysOfLastMonth = Month.DECEMBER.getTotalDays(this.year)
-      return CalendarDate.of(
-        this.year.previous(),
-        Month.DECEMBER,
-        daysOfLastMonth + offset
-      )
+    if (!this.isGoingBackOneYear()) {
+      return CalendarDate.of(this.year, this.month.previous(), day)
     }
 
-    const month = this.month.previous()
-    const daysOfLastMonth = month.getTotalDays(this.year)
-    return this.ofSameYear(month, daysOfLastMonth + offset)
+    return CalendarDate.of(this.year.previous(), this.month.previous(), day)
+  }
+
+  private isGoingBackOneYear() {
+    return this.isGoingBackOneMonth() && this.month === Month.JANUARY
   }
 
   public getNextDay(howManyDays: number): Day {
@@ -69,7 +60,7 @@ export class CalendarDate {
     return new Day(this.date.getDate())
   }
 
-  private isFirstWeekOfTheMonth() {
+  private isGoingBackOneMonth() {
     const dayOfTheWeek = this.date.getDay() + 1
     return this.date.getDate() - dayOfTheWeek <= 0
   }
