@@ -10,21 +10,21 @@ export class CalendarDate {
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
     this.month = Month.valueOf(this.getCurrentMonth())
-    this.year = new Year(this.getCurrentYear())
+    this.year = new Year(this.date.getFullYear())
   }
 
-  static of(year: number, month: number, day: number): CalendarDate {
+  static of(year: Year, month: number, day: number): CalendarDate {
     const MM = Month.valueOf(month).asMM()
     const DD = new Day(day).asDD()
-    return new CalendarDate(`${year}-${MM}-${DD}`)
+    return new CalendarDate(`${year.value}-${MM}-${DD}`)
   }
 
   private ofSameMonth(day: number): CalendarDate {
-    return CalendarDate.of(this.getCurrentYear(), this.getCurrentMonth(), day)
+    return CalendarDate.of(this.year, this.getCurrentMonth(), day)
   }
 
   private ofSameYear(month: number, day: number): CalendarDate {
-    return CalendarDate.of(this.getCurrentYear(), month, day)
+    return CalendarDate.of(this.year, month, day)
   }
 
   public getFirstDayOfTheWeek(): CalendarDate {
@@ -36,7 +36,7 @@ export class CalendarDate {
     if (this.month === Month.JANUARY) {
       const daysOfLastMonth = Month.DECEMBER.getTotalDays(this.year)
       return CalendarDate.of(
-        this.year.previous().value,
+        this.year.previous(),
         Month.DECEMBER.value,
         daysOfLastMonth + offset
       )
@@ -64,7 +64,7 @@ export class CalendarDate {
     }
 
     const days = offset - this.month.getTotalDays(this.year)
-    return CalendarDate.of(this.getNextYear(), 1, days)
+    return CalendarDate.of(this.year.next(), 1, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
@@ -87,12 +87,5 @@ export class CalendarDate {
 
   private getNextMonth() {
     return this.getCurrentMonth() + 1
-  }
-  private getCurrentYear() {
-    return this.date.getFullYear()
-  }
-
-  private getNextYear() {
-    return this.year.next().value
   }
 }
