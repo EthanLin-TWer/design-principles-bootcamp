@@ -1,5 +1,4 @@
 import { CalendarDate } from './calendar-date'
-// eslint-disable-next-line no-unused-vars
 import { ConsolePrinter } from './printers/console-printer'
 import { Day } from './date-components/day'
 
