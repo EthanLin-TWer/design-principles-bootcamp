@@ -22,9 +22,7 @@ export class CalendarDate {
   }
 
   public getFirstDayOfTheWeek(): CalendarDate {
-    const daysOfLastMonth = this.month.previous().getTotalDays(this.year)
-    const day = this.day.previous(this.date.getDay(), daysOfLastMonth)
-
+    const day = this.day.previous(this.date.getDay())
     if (!this.isGoingBackOneMonth()) {
       return CalendarDate.of(this.year, this.month, day)
     }
@@ -41,19 +39,16 @@ export class CalendarDate {
   }
 
   public getNextDay(howManyDays: number): Day {
-    const totalDays = this.month.getTotalDays(this.year)
-    const day = this.day.next(howManyDays, totalDays)
-
+    const day = this.day.next(howManyDays)
     if (this.isWithinSameMonth(howManyDays)) {
       return CalendarDate.of(this.year, this.month, day).getDate()
     }
 
-    const month = this.month.next()
     if (this.isWithinSameYear(howManyDays)) {
-      return CalendarDate.of(this.year, month, day).getDate()
+      return CalendarDate.of(this.year, this.month.next(), day).getDate()
     }
 
-    return CalendarDate.of(this.year.next(), month, day).getDate()
+    return CalendarDate.of(this.year.next(), this.month.next(), day).getDate()
   }
 
   public getDate(): Day {

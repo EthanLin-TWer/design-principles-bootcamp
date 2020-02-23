@@ -4,29 +4,29 @@ import { Year } from './year'
 
 export class Day extends DateComponent {
   private month: Month
-  private year: Year
+  private readonly year: Year
   constructor(value: number, month: Month, year: Year) {
     super(value)
     this.month = month
     this.year = year
   }
 
-  next(fewDays: number, totalDaysOfCurrentMonth: number) {
+  next(fewDays: number) {
     const nextDay = this.value + fewDays
-    if (nextDay <= totalDaysOfCurrentMonth) {
+    if (nextDay <= this.month.getTotalDays(this.year)) {
       return nextDay
     }
 
-    return nextDay - totalDaysOfCurrentMonth
+    return nextDay - this.month.getTotalDays(this.year)
   }
 
-  previous(fewDays: number, totalDaysOfPreviousMonth: number) {
+  previous(fewDays: number) {
     const previousDay = this.value - fewDays
     if (this.value - fewDays > 0) {
       return previousDay
     }
 
-    return previousDay + totalDaysOfPreviousMonth
+    return previousDay + this.month.previous().getTotalDays(this.year)
   }
 
   addTrailingSpaceForDaysBefore10th() {
