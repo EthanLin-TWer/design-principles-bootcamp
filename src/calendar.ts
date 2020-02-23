@@ -22,11 +22,11 @@ export class Calendar {
   }
 
   private generateCurrentWeekInfo(): number[] {
-    return (
-      Array.from({ length: 7 })
-        .fill(this.date.getFirstDayOfTheWeek())
-        // @ts-ignore
-        .map((date: CalendarDate, i: number) => date.getNextDay(i).getDate())
-    )
+    const result: number[] = []
+    const firstDayOfTheWeek: CalendarDate = this.date.getFirstDayOfTheWeek()
+    for (let i = 0; i < 7; i += 1) {
+      result.push(firstDayOfTheWeek.getNextDay(i).getDate())
+    }
+    return result
   }
 }
