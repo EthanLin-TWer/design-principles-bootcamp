@@ -1,30 +1,30 @@
 import { Month } from './month'
 
-export class DateUtil {
+export class CalendarDate {
   private readonly date: Date
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
   }
 
-  static of(year: number, month: number, day: number): DateUtil {
-    const MM = DateUtil.padToTwoDigits(month)
-    const DD = DateUtil.padToTwoDigits(day)
-    return new DateUtil(`${year}-${MM}-${DD}`)
+  static of(year: number, month: number, day: number): CalendarDate {
+    const MM = CalendarDate.padToTwoDigits(month)
+    const DD = CalendarDate.padToTwoDigits(day)
+    return new CalendarDate(`${year}-${MM}-${DD}`)
   }
 
-  private ofSameMonth(day: number): DateUtil {
-    return DateUtil.of(this.getCurrentYear(), this.getCurrentMonth(), day)
+  private ofSameMonth(day: number): CalendarDate {
+    return CalendarDate.of(this.getCurrentYear(), this.getCurrentMonth(), day)
   }
 
-  private ofSameYear(month: number, day: number): DateUtil {
-    return DateUtil.of(this.getCurrentYear(), month, day)
+  private ofSameYear(month: number, day: number): CalendarDate {
+    return CalendarDate.of(this.getCurrentYear(), month, day)
   }
 
   static padToTwoDigits(number: any) {
     return number.toString().length === 1 ? `0${number}` : number.toString()
   }
 
-  public getFirstDayOfTheWeek(): DateUtil {
+  public getFirstDayOfTheWeek(): CalendarDate {
     const offset = this.date.getDate() - this.date.getDay()
     if (!this.isFirstWeekOfTheMonth()) {
       return this.ofSameMonth(offset)
@@ -33,7 +33,7 @@ export class DateUtil {
     if (this.getCurrentMonth() === Month.JANUARY) {
       const daysOfLastMonth = this.getTotalDaysOf(Month.DECEMBER)
       const year = this.getLastYear()
-      return DateUtil.of(year, Month.DECEMBER, daysOfLastMonth + offset)
+      return CalendarDate.of(year, Month.DECEMBER, daysOfLastMonth + offset)
     }
 
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
@@ -46,7 +46,7 @@ export class DateUtil {
     return this.date.getDate() - dayOfTheWeek <= 0
   }
 
-  public getNextDay(howManyDays: number): DateUtil {
+  public getNextDay(howManyDays: number): CalendarDate {
     const offset = this.date.getDate() + howManyDays
     if (!this.isCrossingToNextMonth(howManyDays)) {
       return this.ofSameMonth(offset)
@@ -58,7 +58,7 @@ export class DateUtil {
     }
 
     const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
-    return DateUtil.of(this.getNextYear(), 1, days)
+    return CalendarDate.of(this.getNextYear(), 1, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
