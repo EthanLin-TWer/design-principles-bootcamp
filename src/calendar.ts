@@ -9,8 +9,8 @@ export class Calendar {
   protected static HEADER: string[] = ['日', '一', '二', '三', '四', '五', '六']
 
   public printCurrentWeek(): string {
-    const content: number[] = this.generateCurrentWeekData()
-    return this.print(content)
+    const currentWeekData: number[] = this.generateCurrentWeekData()
+    return this.print(currentWeekData)
   }
 
   private print(data: number[]) {
