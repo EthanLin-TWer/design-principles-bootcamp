@@ -14,6 +14,10 @@ export class DateUtil {
     return DateUtil.of(this.getCurrentYear(), this.getCurrentMonth(), day)
   }
 
+  private ofSameYear(month: number, day: number): DateUtil {
+    return DateUtil.of(this.getCurrentYear(), month, day)
+  }
+
   static padToTwoDigits(number: any) {
     return number.toString().length === 1 ? `0${number}` : number.toString()
   }
@@ -31,10 +35,8 @@ export class DateUtil {
     }
 
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
-    const year = this.getCurrentYear()
     const month = this.getPreviousMonth()
-
-    return DateUtil.of(year, month, daysOfLastMonth + offset)
+    return this.ofSameYear(month, daysOfLastMonth + offset)
   }
 
   private isFirstWeekOfTheMonth() {
