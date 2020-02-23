@@ -45,7 +45,7 @@ export class DateUtil {
   }
 
   public getNextDay(howManyDays: number): DateUtil {
-    if (this.isWithCurrentMonth(howManyDays)) {
+    if (!this.isCrossingToNextMonth(howManyDays)) {
       const days = this.date.getDate() + howManyDays
       return this.ofSameMonth(days)
     }
@@ -64,9 +64,9 @@ export class DateUtil {
     return new DateUtil(`${year}-${month}-${days}`)
   }
 
-  private isWithCurrentMonth(howManyDays: number) {
+  private isCrossingToNextMonth(howManyDays: number) {
     return (
-      this.date.getDate() + howManyDays <=
+      this.date.getDate() + howManyDays >
       this.getTotalDaysOf(this.getCurrentMonth())
     )
   }
