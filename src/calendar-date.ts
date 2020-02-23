@@ -71,8 +71,8 @@ export class CalendarDate {
     )
   }
 
-  public getDate(): number {
-    return this.date.getDate()
+  public getDate(): Day {
+    return new Day(this.date.getDate())
   }
 
   private getTotalDaysOf(month: number): number {
