@@ -35,12 +35,12 @@ export class Calendar {
     }
 
     // eslint-disable-next-line no-invalid-this
-    if (date + i <= this.getTotalDaysOf(this.getCurrentMonth())) {
+    if (date + i <= this.getTotalDaysOf(this.dateUtil.getCurrentMonth())) {
       return date + i
     }
 
     // eslint-disable-next-line no-invalid-this
-    return (date + i) % this.getTotalDaysOf(this.getCurrentMonth())
+    return (date + i) % this.getTotalDaysOf(this.dateUtil.getCurrentMonth())
   }
 
   // can go to date objects
@@ -55,7 +55,7 @@ export class Calendar {
 
   // can go to date objects
   private getPreviousMonth() {
-    return this.getCurrentMonth() - 1
+    return this.dateUtil.getCurrentMonth() - 1
   }
 
   // can go to date objects
@@ -64,10 +64,6 @@ export class Calendar {
   }
 
   // can go to date objects
-  private getCurrentMonth() {
-    return this.date.getMonth()
-  }
-
   // can be implemented with date libraries
   private isLeapYear() {
     const currentYear = this.date.getFullYear()
