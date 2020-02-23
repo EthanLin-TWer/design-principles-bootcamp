@@ -6,13 +6,15 @@ export class Calendar {
     this.date = new CalendarDate(date)
   }
 
+  protected static HEADER: string[] = ['日', '一', '二', '三', '四', '五', '六']
+
   public printCurrentWeek(): string {
     const content: number[] = this.generateCurrentWeekData()
     return this.print(content)
   }
 
   private print(data: number[]) {
-    const header = '日\t一\t二\t三\t四\t五\t六'
+    const header = Calendar.HEADER.join('\t')
     const content = data
       .map((date) => (date >= 10 ? date.toString() : `${date} `))
       .join('  ')
