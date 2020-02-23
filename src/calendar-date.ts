@@ -9,7 +9,7 @@ export class CalendarDate {
 
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
-    this.month = Month.valueOf(this.getCurrentMonth())
+    this.month = Month.valueOf(this.date.getMonth() + 1)
     this.year = new Year(this.date.getFullYear())
   }
 
@@ -20,7 +20,7 @@ export class CalendarDate {
   }
 
   private ofSameMonth(day: number): CalendarDate {
-    return CalendarDate.of(this.year, this.getCurrentMonth(), day)
+    return CalendarDate.of(this.year, this.month.value, day)
   }
 
   private ofSameYear(month: number, day: number): CalendarDate {
@@ -64,7 +64,7 @@ export class CalendarDate {
     }
 
     const days = offset - this.month.getTotalDays(this.year)
-    return CalendarDate.of(this.year.next(), 1, days)
+    return CalendarDate.of(this.year.next(), Month.JANUARY.value, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
@@ -75,8 +75,5 @@ export class CalendarDate {
 
   public getDate(): Day {
     return new Day(this.date.getDate())
-  }
-  private getCurrentMonth(): number {
-    return this.date.getMonth() + 1
   }
 }
