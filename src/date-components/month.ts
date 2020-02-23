@@ -1,4 +1,5 @@
 import { DateComponent } from './date-component'
+import { Year } from './year'
 
 export class Month extends DateComponent {
   public static JANUARY: Month = new Month(1, 31)
@@ -51,8 +52,8 @@ export class Month extends DateComponent {
     return Month.Values[(index + 11) % Month.Values.length]
   }
 
-  public getTotalDays(isLeapYear: boolean): number {
-    if (this === Month.TEMP_FEBRUARY && isLeapYear) {
+  public extracted(year: Year) {
+    if (this === Month.TEMP_FEBRUARY && year.isLeap()) {
       return 29
     }
 
