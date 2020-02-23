@@ -21,7 +21,7 @@ export class Calendar {
         .fill(this.dateUtil.getFirstDayOfTheWeek())
         // @ts-ignore
         .map((date: DateUtil, i: number) => {
-          return date._getNextDay(i).toString()
+          return date.getNextDay(i).toString()
         })
         .join('  ')
         .trimEnd()

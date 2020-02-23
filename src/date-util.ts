@@ -26,11 +26,7 @@ export class DateUtil {
     )
   }
 
-  private padToTwoDigits(number: number): string {
-    return number.toString().length === 1 ? `0${number}` : number.toString()
-  }
-
-  public _getNextDay(howManyDays: number): DateUtil {
+  public getNextDay(howManyDays: number): DateUtil {
     if (
       this.date.getDate() + howManyDays >
       this.getTotalDaysOf(this.getCurrentMonth())
@@ -46,8 +42,6 @@ export class DateUtil {
           howManyDays -
           this.getTotalDaysOf(this.getCurrentMonth())
       )
-      console.log('-------- year, month --------')
-      console.log(year, month, days)
       return new DateUtil(`${year}-${month}-${days}`)
     }
 
@@ -65,16 +59,8 @@ export class DateUtil {
     return `${date} `
   }
 
-  public getNextDay(date: number, i: number) {
-    if (date + i <= 0) {
-      return this.getTotalDaysOf(this.getPreviousMonth()) + date + i
-    }
-
-    if (date + i <= this.getTotalDaysOf(this.getCurrentMonth())) {
-      return date + i
-    }
-
-    return (date + i) % this.getTotalDaysOf(this.getCurrentMonth())
+  private padToTwoDigits(number: number): string {
+    return number.toString().length === 1 ? `0${number}` : number.toString()
   }
 
   private getTotalDaysOf(currentMonth: number): number {
