@@ -3,8 +3,7 @@ import { Year } from './year'
 
 export class Month extends DateComponent {
   public static JANUARY: Month = new Month(1, 31)
-  public static TEMP_FEBRUARY: Month = new Month(2, 28)
-  public static FEBRUARY: number = new Month(2, 28).value
+  public static FEBRUARY: Month = new Month(2, 28)
   public static MARCH: Month = new Month(3, 31)
   public static APRIL: Month = new Month(4, 30)
   public static MAY: Month = new Month(5, 31)
@@ -18,7 +17,7 @@ export class Month extends DateComponent {
   public static NULL: Month = new Month(0, 0)
   private static readonly Values: Month[] = [
     Month.JANUARY,
-    Month.TEMP_FEBRUARY,
+    Month.FEBRUARY,
     Month.MARCH,
     Month.APRIL,
     Month.MAY,
@@ -60,7 +59,7 @@ export class Month extends DateComponent {
   }
 
   public getTotalDays(year: Year) {
-    if (this === Month.TEMP_FEBRUARY && year.isLeap()) {
+    if (this === Month.FEBRUARY && year.isLeap()) {
       return 29
     }
 
