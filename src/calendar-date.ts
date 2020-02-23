@@ -56,18 +56,18 @@ export class CalendarDate {
     }
 
     if (!this.month.is(Month.DECEMBER)) {
-      const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
+      const days = offset - this.month.getTotalDays(this.isLeapYear())
       return this.ofSameYear(this.getNextMonth(), days)
     }
 
-    const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
+    const days = offset - this.month.getTotalDays(this.isLeapYear())
     return CalendarDate.of(this.getNextYear(), 1, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
     return (
       this.date.getDate() + howManyDays >
-      this.getTotalDaysOf(this.getCurrentMonth())
+      this.month.getTotalDays(this.isLeapYear())
     )
   }
 
