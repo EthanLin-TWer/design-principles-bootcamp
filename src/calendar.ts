@@ -16,15 +16,13 @@ export class Calendar {
   }
 
   private generateCurrentWeekInfo(): string {
-    const dayOfTheWeek = this.date.getDay()
     return (
       Array.from({ length: 7 })
-        .fill(this.date.getDate() - dayOfTheWeek)
+        .fill(this.dateUtil.getFirstDayOfTheWeek())
         // @ts-ignore
-        .map((date: number, i: number) => {
-          return this.dateUtil.getNextDay(date, i)
+        .map((date: DateUtil, i: number) => {
+          return date._getNextDay(i).toString()
         })
-        .map((date) => `${date}${date >= 10 ? '' : ' '}`)
         .join('  ')
         .trimEnd()
     )

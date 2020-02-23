@@ -5,23 +5,22 @@ export class DateUtil {
   }
 
   public getFirstDayOfTheWeek(): DateUtil {
-    const dayOfTheWeek = this.date.getDay()
-    if (this.date.getDate() - dayOfTheWeek < 0) {
-      const offset = this.date.getDate() - dayOfTheWeek
-      const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
-      const day = daysOfLastMonth + offset - 1
-      const fullYear = this.date.getFullYear()
-      const month = this.getCurrentMonth() === 0 ? 12 : this.getCurrentMonth()
-      const year = month === 12 ? fullYear - 1 : fullYear
-
+    const dayOfTheWeek = this.date.getDay() + 1
+    if (this.date.getDate() - dayOfTheWeek > 0) {
+      const year = this.date.getFullYear()
+      const month = this.date.getMonth() + 1
+      const day = this.date.getDate() - dayOfTheWeek + 1
       return new DateUtil(
         `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
       )
     }
+    const offset = this.date.getDate() - dayOfTheWeek
+    const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
+    const day = daysOfLastMonth + offset + 1
+    const fullYear = this.date.getFullYear()
+    const month = this.getCurrentMonth() === 0 ? 12 : this.getCurrentMonth()
+    const year = month === 12 ? fullYear - 1 : fullYear
 
-    const year = this.date.getFullYear()
-    const month = this.date.getMonth() + 1
-    const day = this.date.getDate() - dayOfTheWeek
     return new DateUtil(
       `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
     )
@@ -29,6 +28,41 @@ export class DateUtil {
 
   private padToTwoDigits(number: number): string {
     return number.toString().length === 1 ? `0${number}` : number.toString()
+  }
+
+  public _getNextDay(howManyDays: number): DateUtil {
+    if (
+      this.date.getDate() + howManyDays >
+      this.getTotalDaysOf(this.getCurrentMonth())
+    ) {
+      const currentMonth = this.date.getMonth() + 1
+      const fullYear = this.date.getFullYear()
+      const year = currentMonth === 12 ? fullYear + 1 : fullYear
+      const month = this.padToTwoDigits(
+        currentMonth === 12 ? 1 : currentMonth + 1
+      )
+      const days = this.padToTwoDigits(
+        this.date.getDate() +
+          howManyDays -
+          this.getTotalDaysOf(this.getCurrentMonth())
+      )
+      console.log('-------- year, month --------')
+      console.log(year, month, days)
+      return new DateUtil(`${year}-${month}-${days}`)
+    }
+
+    const year = this.date.getFullYear()
+    const month = this.padToTwoDigits(this.date.getMonth() + 1)
+    const days = this.padToTwoDigits(this.date.getDate() + howManyDays)
+    return new DateUtil(`${year}-${month}-${days}`)
+  }
+
+  public toString(): string {
+    const date = this.date.getDate()
+    if (date >= 10) {
+      return date.toString()
+    }
+    return `${date} `
   }
 
   public getNextDay(date: number, i: number) {
