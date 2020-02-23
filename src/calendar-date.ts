@@ -47,11 +47,6 @@ export class CalendarDate {
     return this.ofSameYear(month, daysOfLastMonth + offset)
   }
 
-  private isFirstWeekOfTheMonth() {
-    const dayOfTheWeek = this.date.getDay() + 1
-    return this.date.getDate() - dayOfTheWeek <= 0
-  }
-
   public getNextDay(howManyDays: number): CalendarDate {
     const offset = this.date.getDate() + howManyDays
     if (!this.isCrossingToNextMonth(howManyDays)) {
@@ -67,13 +62,18 @@ export class CalendarDate {
     return CalendarDate.of(this.year.next(), Month.JANUARY, days)
   }
 
+  public getDate(): Day {
+    return new Day(this.date.getDate())
+  }
+
+  private isFirstWeekOfTheMonth() {
+    const dayOfTheWeek = this.date.getDay() + 1
+    return this.date.getDate() - dayOfTheWeek <= 0
+  }
+
   private isCrossingToNextMonth(howManyDays: number) {
     return (
       this.date.getDate() + howManyDays > this.month.getTotalDays(this.year)
     )
-  }
-
-  public getDate(): Day {
-    return new Day(this.date.getDate())
   }
 }
