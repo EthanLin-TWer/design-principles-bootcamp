@@ -50,6 +50,9 @@ export class DateUtil {
       return this.ofSameMonth(days)
     }
 
+    if (this.isDecember()) {
+    }
+
     const currentMonth = this.date.getMonth() + 1
     const fullYear = this.date.getFullYear()
     const year = currentMonth === 12 ? fullYear + 1 : fullYear
@@ -119,5 +122,9 @@ export class DateUtil {
 
   private isJanuary(): boolean {
     return this.date.getMonth() + 1 === 1
+  }
+
+  private isDecember() {
+    return this.date.getMonth() + 1 === 12
   }
 }
