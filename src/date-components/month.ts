@@ -52,7 +52,7 @@ export class Month extends DateComponent {
     return Month.Values[(index + 11) % Month.Values.length]
   }
 
-  public extracted(year: Year) {
+  public getTotalDays(year: Year) {
     if (this === Month.TEMP_FEBRUARY && year.isLeap()) {
       return 29
     }

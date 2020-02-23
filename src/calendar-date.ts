@@ -34,7 +34,7 @@ export class CalendarDate {
     }
 
     if (this.month === Month.JANUARY) {
-      const daysOfLastMonth = Month.DECEMBER.extracted(this.year)
+      const daysOfLastMonth = Month.DECEMBER.getTotalDays(this.year)
       return CalendarDate.of(
         this.year.previous().value,
         Month.DECEMBER.value,
@@ -42,7 +42,7 @@ export class CalendarDate {
       )
     }
 
-    const daysOfLastMonth = this.month.previous().extracted(this.year)
+    const daysOfLastMonth = this.month.previous().getTotalDays(this.year)
     const month = this.getPreviousMonth()
     return this.ofSameYear(month, daysOfLastMonth + offset)
   }
@@ -59,16 +59,18 @@ export class CalendarDate {
     }
 
     if (this.month !== Month.DECEMBER) {
-      const days = offset - this.month.extracted(this.year)
+      const days = offset - this.month.getTotalDays(this.year)
       return this.ofSameYear(this.getNextMonth(), days)
     }
 
-    const days = offset - this.month.extracted(this.year)
+    const days = offset - this.month.getTotalDays(this.year)
     return CalendarDate.of(this.getNextYear(), 1, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
-    return this.date.getDate() + howManyDays > this.month.extracted(this.year)
+    return (
+      this.date.getDate() + howManyDays > this.month.getTotalDays(this.year)
+    )
   }
 
   public getDate(): Day {
