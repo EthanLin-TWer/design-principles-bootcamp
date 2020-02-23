@@ -101,10 +101,6 @@ export class CalendarDate {
 
   // can be implemented with date libraries
   private isLeapYear(): boolean {
-    const currentYear = this.date.getFullYear()
-    return (
-      currentYear % 400 === 0 ||
-      (currentYear % 4 === 0 && currentYear % 100 !== 0)
-    )
+    return this.year.isLeap()
   }
 }
