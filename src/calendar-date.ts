@@ -50,18 +50,19 @@ export class CalendarDate {
   }
 
   public getNextDay(howManyDays: number): Day {
-    const offset = this.date.getDate() + howManyDays
-    if (!this.isCrossingToNextMonth(howManyDays)) {
-      return this.ofSameMonth(offset).getDate()
+    const totalDays = this.month.getTotalDays(this.year)
+    const day = this.day.next(howManyDays, totalDays)
+
+    if (this.isWithinSameMonth(howManyDays)) {
+      return CalendarDate.of(this.year, this.month, day).getDate()
     }
 
-    if (this.month === Month.DECEMBER) {
-      const days = offset - this.month.getTotalDays(this.year)
-      return CalendarDate.of(this.year.next(), Month.JANUARY, days).getDate()
+    const month = this.month.next()
+    if (this.isWithinSameYear(howManyDays)) {
+      return CalendarDate.of(this.year, month, day).getDate()
     }
 
-    const days = offset - this.month.getTotalDays(this.year)
-    return this.ofSameYear(this.month.next(), days).getDate()
+    return CalendarDate.of(this.year.next(), month, day).getDate()
   }
 
   public getDate(): Day {
@@ -73,9 +74,13 @@ export class CalendarDate {
     return this.date.getDate() - dayOfTheWeek <= 0
   }
 
-  private isCrossingToNextMonth(howManyDays: number) {
+  private isWithinSameMonth(howManyDays: number) {
     return (
-      this.date.getDate() + howManyDays > this.month.getTotalDays(this.year)
+      this.date.getDate() + howManyDays <= this.month.getTotalDays(this.year)
     )
+  }
+
+  private isWithinSameYear(howManyDays) {
+    return !this.isWithinSameMonth(howManyDays) && this.month !== Month.DECEMBER
   }
 }

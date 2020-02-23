@@ -1,8 +1,14 @@
 import { DateComponent } from './date-component'
-import { Month } from './month'
 
 export class Day extends DateComponent {
-  next(days: number, nextMonth: Month) {}
+  next(fewDays: number, totalDaysOfCurrentMonth: number) {
+    const nextDay = this.value + fewDays
+    if (nextDay <= totalDaysOfCurrentMonth) {
+      return nextDay
+    }
+
+    return nextDay - totalDaysOfCurrentMonth
+  }
 
   addTrailingSpaceForDaysBefore10th() {
     return this.value >= 10 ? this.value.toString() : `${this.value} `
