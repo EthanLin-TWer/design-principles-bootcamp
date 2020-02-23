@@ -55,16 +55,8 @@ export class DateUtil {
       return this.ofSameYear(this.getNextMonth(), days)
     }
 
-    const currentMonth = this.date.getMonth() + 1
-    const fullYear = this.date.getFullYear()
-    const year = currentMonth === 12 ? fullYear + 1 : fullYear
-    const month = DateUtil.padToTwoDigits(
-      currentMonth === 12 ? 1 : currentMonth + 1
-    )
-    const days = DateUtil.padToTwoDigits(
-      offset - this.getTotalDaysOf(this.getCurrentMonth())
-    )
-    return new DateUtil(`${year}-${month}-${days}`)
+    const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
+    return DateUtil.of(this.getNextYear(), 1, days)
   }
 
   private isCrossingToNextMonth(howManyDays: number) {
