@@ -1,4 +1,5 @@
 import { Month } from './month'
+import { padToTwoDigits } from './utils/string'
 
 export class CalendarDate {
   private readonly date: Date
@@ -7,8 +8,8 @@ export class CalendarDate {
   }
 
   static of(year: number, month: number, day: number): CalendarDate {
-    const MM = CalendarDate.padToTwoDigits(month)
-    const DD = CalendarDate.padToTwoDigits(day)
+    const MM = padToTwoDigits(month)
+    const DD = padToTwoDigits(day)
     return new CalendarDate(`${year}-${MM}-${DD}`)
   }
 
@@ -18,10 +19,6 @@ export class CalendarDate {
 
   private ofSameYear(month: number, day: number): CalendarDate {
     return CalendarDate.of(this.getCurrentYear(), month, day)
-  }
-
-  static padToTwoDigits(number: any) {
-    return number.toString().length === 1 ? `0${number}` : number.toString()
   }
 
   public getFirstDayOfTheWeek(): CalendarDate {
