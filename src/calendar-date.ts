@@ -35,9 +35,8 @@ export class CalendarDate {
 
     if (this.month === Month.JANUARY) {
       const daysOfLastMonth = Month.DECEMBER.getTotalDays(this.isLeapYear())
-      const year = this.getLastYear()
       return CalendarDate.of(
-        year,
+        this.year.previous().value,
         Month.DECEMBER.value,
         daysOfLastMonth + offset
       )
@@ -92,11 +91,6 @@ export class CalendarDate {
   private getNextMonth() {
     return this.getCurrentMonth() + 1
   }
-
-  private getLastYear() {
-    return this.getCurrentYear() - 1
-  }
-
   private getCurrentYear() {
     return this.date.getFullYear()
   }

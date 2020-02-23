@@ -1,6 +1,10 @@
 export class Year {
-  public year: number
+  public value: number
   constructor(year: number) {
-    this.year = year
+    this.value = year
+  }
+
+  public previous(): Year {
+    return new Year(this.value - 1)
   }
 }
