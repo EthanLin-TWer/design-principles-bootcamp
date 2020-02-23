@@ -18,13 +18,9 @@ export class DateUtil {
     const dayOfTheWeek = this.date.getDay() + 1
     if (!this.isFirstWeekOfTheMonth()) {
       const year = this.date.getFullYear()
-      const month = this.date.getMonth() + 1
+      const month = this.date.getMonth()
       const day = this.date.getDate() - dayOfTheWeek + 1
-      return new DateUtil(
-        `${year}-${DateUtil.padToTwoDigits(month)}-${DateUtil.padToTwoDigits(
-          day
-        )}`
-      )
+      return DateUtil.of(year, month, day)
     }
 
     const offset = this.date.getDate() - dayOfTheWeek
