@@ -42,26 +42,26 @@ export class DateUtil {
 
   public getNextDay(howManyDays: number): DateUtil {
     if (
-      this.date.getDate() + howManyDays >
+      this.date.getDate() + howManyDays <=
       this.getTotalDaysOf(this.getCurrentMonth())
     ) {
-      const currentMonth = this.date.getMonth() + 1
-      const fullYear = this.date.getFullYear()
-      const year = currentMonth === 12 ? fullYear + 1 : fullYear
-      const month = DateUtil.padToTwoDigits(
-        currentMonth === 12 ? 1 : currentMonth + 1
-      )
-      const days = DateUtil.padToTwoDigits(
-        this.date.getDate() +
-          howManyDays -
-          this.getTotalDaysOf(this.getCurrentMonth())
-      )
+      const year = this.date.getFullYear()
+      const month = DateUtil.padToTwoDigits(this.date.getMonth() + 1)
+      const days = DateUtil.padToTwoDigits(this.date.getDate() + howManyDays)
       return new DateUtil(`${year}-${month}-${days}`)
     }
 
-    const year = this.date.getFullYear()
-    const month = DateUtil.padToTwoDigits(this.date.getMonth() + 1)
-    const days = DateUtil.padToTwoDigits(this.date.getDate() + howManyDays)
+    const currentMonth = this.date.getMonth() + 1
+    const fullYear = this.date.getFullYear()
+    const year = currentMonth === 12 ? fullYear + 1 : fullYear
+    const month = DateUtil.padToTwoDigits(
+      currentMonth === 12 ? 1 : currentMonth + 1
+    )
+    const days = DateUtil.padToTwoDigits(
+      this.date.getDate() +
+        howManyDays -
+        this.getTotalDaysOf(this.getCurrentMonth())
+    )
     return new DateUtil(`${year}-${month}-${days}`)
   }
 
