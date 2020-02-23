@@ -24,8 +24,8 @@ export class Calendar {
         .map((date: number, i: number) => {
           return this.dateUtil.getNextDay(date, i)
         })
-        .map((date) => `${date}${date >= 10 ? '  ' : '   '}`)
-        .join('')
+        .map((date) => `${date}${date >= 10 ? '' : ' '}`)
+        .join('  ')
         .trimEnd()
     )
   }
