@@ -7,6 +7,7 @@
 - 输入指定日期，以文本形式输出日期【所属周】的日历， 比如，输入：2020-01-09，输出如下：
   - 输入：指定日期（yyyy-mm-dd 格式）；
   - 输出：该日期所属周的日历，文本形式
+- inline `CalendarDate.getDate()`
 - possible performance issue in `Month`
 - expressiveness of test data
 

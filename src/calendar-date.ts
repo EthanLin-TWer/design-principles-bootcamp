@@ -47,19 +47,19 @@ export class CalendarDate {
     return this.ofSameYear(month, daysOfLastMonth + offset)
   }
 
-  public getNextDay(howManyDays: number): CalendarDate {
+  public getNextDay(howManyDays: number): Day {
     const offset = this.date.getDate() + howManyDays
     if (!this.isCrossingToNextMonth(howManyDays)) {
-      return this.ofSameMonth(offset)
+      return this.ofSameMonth(offset).getDate()
     }
 
     if (this.month === Month.DECEMBER) {
       const days = offset - this.month.getTotalDays(this.year)
-      return CalendarDate.of(this.year.next(), Month.JANUARY, days)
+      return CalendarDate.of(this.year.next(), Month.JANUARY, days).getDate()
     }
 
     const days = offset - this.month.getTotalDays(this.year)
-    return this.ofSameYear(this.month.next(), days)
+    return this.ofSameYear(this.month.next(), days).getDate()
   }
 
   public getDate(): Day {

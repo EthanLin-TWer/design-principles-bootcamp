@@ -20,7 +20,7 @@ export class Calendar {
 
     const firstDayOfTheWeek: CalendarDate = date.getFirstDayOfTheWeek()
     for (let i = 0; i < 7; i += 1) {
-      result.push(firstDayOfTheWeek.getNextDay(i).getDate())
+      result.push(firstDayOfTheWeek.getNextDay(i))
     }
 
     return result
