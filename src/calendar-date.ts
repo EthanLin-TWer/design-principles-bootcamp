@@ -6,11 +6,13 @@ export class CalendarDate {
   private readonly date: Date
   private readonly month: Month
   private readonly year: Year
+  private readonly day: Day
 
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
-    this.month = Month.valueOf(this.date.getMonth() + 1)
     this.year = new Year(this.date.getFullYear())
+    this.month = Month.valueOf(this.date.getMonth() + 1)
+    this.day = new Day(this.date.getDate())
   }
 
   static of(year: Year, month: Month, day: number): CalendarDate {
