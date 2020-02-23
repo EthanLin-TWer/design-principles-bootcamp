@@ -1,6 +1,7 @@
 import { Day } from '../date-components/day'
+import { Printer } from './base'
 
-export class ConsolePrinter {
+export class ConsolePrinter extends Printer {
   public print(headers: string[], days: Day[]): string {
     const header = headers.join('\t')
     const content = days

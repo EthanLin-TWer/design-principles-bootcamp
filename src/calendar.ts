@@ -1,10 +1,10 @@
 import { CalendarDate } from './calendar-date'
-import { ConsolePrinter } from './printers/console-printer'
 import { Day } from './date-components/day'
+import { Printer } from './printers/base'
 
 export class Calendar {
-  private printer: ConsolePrinter
-  constructor(printer: ConsolePrinter) {
+  private printer: Printer
+  constructor(printer: Printer) {
     this.printer = printer
   }
 
