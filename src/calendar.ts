@@ -7,7 +7,7 @@ export class Calendar {
   }
 
   public printCurrentWeek(): string {
-    const content: number[] = this.generateCurrentWeekInfo()
+    const content: number[] = this.generateCurrentWeekData()
     return this.print(content)
   }
 
@@ -21,12 +21,14 @@ export class Calendar {
     return `${header}\n${content}`
   }
 
-  private generateCurrentWeekInfo(): number[] {
+  private generateCurrentWeekData(): number[] {
     const result: number[] = []
+
     const firstDayOfTheWeek: CalendarDate = this.date.getFirstDayOfTheWeek()
     for (let i = 0; i < 7; i += 1) {
       result.push(firstDayOfTheWeek.getNextDay(i).getDate())
     }
+
     return result
   }
 }
