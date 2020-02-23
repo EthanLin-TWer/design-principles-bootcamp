@@ -11,7 +11,7 @@ export class Day extends DateComponent {
     this.year = year
   }
 
-  next(fewDays: number): Day {
+  public next(fewDays: number): Day {
     const nextDay = this.value + fewDays
     if (nextDay <= this.month.getTotalDays(this.year)) {
       return new Day(nextDay, this.month, this.year)
@@ -25,7 +25,7 @@ export class Day extends DateComponent {
     return new Day(day, this.month.next(), this.year)
   }
 
-  previous(fewDays: number): Day {
+  public previous(fewDays: number): Day {
     const previousDay = this.value - fewDays
     if (previousDay > 0) {
       return new Day(previousDay, this.month, this.year)
@@ -41,15 +41,15 @@ export class Day extends DateComponent {
     return new Day(day, this.month.previous(), this.year.previous())
   }
 
-  addTrailingSpaceForDaysBefore10th() {
+  public addTrailingSpaceForDaysBefore10th() {
     return this.value >= 10 ? this.value.toString() : `${this.value} `
   }
 
-  asYYYYmmDD() {
+  public asYYYYmmDD() {
     return `${this.year.getValue()}-${this.month.asMM()}-${this.asDD()}`
   }
 
-  asDD() {
+  private asDD() {
     return this.asPrintable()
   }
 }
