@@ -5,12 +5,9 @@ export class DateUtil {
   }
 
   static of(year, monthIndex, day): DateUtil {
-    const month = monthIndex + 1
-    return new DateUtil(
-      `${year}-${DateUtil.padToTwoDigits(month)}-${DateUtil.padToTwoDigits(
-        day
-      )}`
-    )
+    const MM = DateUtil.padToTwoDigits(monthIndex + 1)
+    const DD = DateUtil.padToTwoDigits(day)
+    return new DateUtil(`${year}-${MM}-${DD}`)
   }
 
   static padToTwoDigits(number: any) {
