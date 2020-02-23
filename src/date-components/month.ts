@@ -52,6 +52,13 @@ export class Month extends DateComponent {
     return Month.Values[(index + 11) % Month.Values.length]
   }
 
+  public next(): Month {
+    const index = Month.Values.findIndex(
+      (result) => result.value === this.value
+    )
+    return Month.Values[(index + 1) % Month.Values.length]
+  }
+
   public getTotalDays(year: Year) {
     if (this === Month.TEMP_FEBRUARY && year.isLeap()) {
       return 29

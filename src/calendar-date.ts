@@ -42,9 +42,9 @@ export class CalendarDate {
       )
     }
 
-    const daysOfLastMonth = this.month.previous().getTotalDays(this.year)
-    const month = this.getPreviousMonth()
-    return this.ofSameYear(month, daysOfLastMonth + offset)
+    const month = this.month.previous()
+    const daysOfLastMonth = month.getTotalDays(this.year)
+    return this.ofSameYear(month.value, daysOfLastMonth + offset)
   }
 
   private isFirstWeekOfTheMonth() {
@@ -60,7 +60,7 @@ export class CalendarDate {
 
     if (this.month !== Month.DECEMBER) {
       const days = offset - this.month.getTotalDays(this.year)
-      return this.ofSameYear(this.getNextMonth(), days)
+      return this.ofSameYear(this.month.next().value, days)
     }
 
     const days = offset - this.month.getTotalDays(this.year)
@@ -76,16 +76,7 @@ export class CalendarDate {
   public getDate(): Day {
     return new Day(this.date.getDate())
   }
-
-  private getPreviousMonth() {
-    return this.getCurrentMonth() - 1
-  }
-
   private getCurrentMonth(): number {
     return this.date.getMonth() + 1
-  }
-
-  private getNextMonth() {
-    return this.getCurrentMonth() + 1
   }
 }
