@@ -4,8 +4,8 @@ export class DateUtil {
     this.date = new Date(dateInYYYYmmDD)
   }
 
-  static of(year, monthIndex, day): DateUtil {
-    const MM = DateUtil.padToTwoDigits(monthIndex + 1)
+  static of(year, month, day): DateUtil {
+    const MM = DateUtil.padToTwoDigits(month)
     const DD = DateUtil.padToTwoDigits(day)
     return new DateUtil(`${year}-${MM}-${DD}`)
   }
@@ -17,22 +17,24 @@ export class DateUtil {
   public getFirstDayOfTheWeek(): DateUtil {
     if (!this.isFirstWeekOfTheMonth()) {
       const year = this.date.getFullYear()
-      const month = this.date.getMonth()
+      const month = this.date.getMonth() + 1
       const day = this.date.getDate() - this.date.getDay()
       return DateUtil.of(year, month, day)
     }
 
+    if (this.isJanuary()) {
+      const daysOfLastMonth = this.getTotalDaysOf(12)
+      const day = daysOfLastMonth + this.date.getDate() - this.date.getDay()
+      const year = this.date.getFullYear() - 1
+      return DateUtil.of(year, 12, day)
+    }
+
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
     const day = daysOfLastMonth + this.date.getDate() - this.date.getDay()
-    const fullYear = this.date.getFullYear()
-    const month = this.getCurrentMonth() === 0 ? 12 : this.getCurrentMonth()
-    const year = month === 12 ? fullYear - 1 : fullYear
+    const year = this.date.getFullYear()
+    const month = this.getCurrentMonth() - 1
 
-    return new DateUtil(
-      `${year}-${DateUtil.padToTwoDigits(month)}-${DateUtil.padToTwoDigits(
-        day
-      )}`
-    )
+    return DateUtil.of(year, month, day)
   }
 
   private isFirstWeekOfTheMonth() {
@@ -73,13 +75,13 @@ export class DateUtil {
     return `${date} `
   }
 
-  private getTotalDaysOf(currentMonth: number): number {
-    if (this.isFebruary(currentMonth) && this.isLeapYear()) {
+  private getTotalDaysOf(month: number): number {
+    if (this.isFebruary(month) && this.isLeapYear()) {
       return 29
     }
 
-    const lastMonthTotalDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    return lastMonthTotalDays[currentMonth]
+    const oops = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    return oops[month]
   }
 
   private getPreviousMonth() {
@@ -87,11 +89,11 @@ export class DateUtil {
   }
 
   private getCurrentMonth(): number {
-    return this.date.getMonth()
+    return this.date.getMonth() + 1
   }
 
   private isFebruary(month: number) {
-    return month + 1 === 2
+    return month === 2
   }
 
   // can be implemented with date libraries
@@ -101,5 +103,9 @@ export class DateUtil {
       currentYear % 400 === 0 ||
       (currentYear % 4 === 0 && currentYear % 100 !== 0)
     )
+  }
+
+  private isJanuary(): boolean {
+    return this.date.getMonth() + 1 === 1
   }
 }

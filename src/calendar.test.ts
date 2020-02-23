@@ -155,5 +155,13 @@ describe('Calendar', () => {
         '日\t一\t二\t三\t四\t五\t六\n24  25  26  27  28  1   2'
       )
     })
+
+    it('should print December days when date is in the first week of January', () => {
+      const result = new Calendar('2020-01-02').printCurrentWeek()
+
+      expect(result).toEqual(
+        '日\t一\t二\t三\t四\t五\t六\n29  30  31  1   2   3   4'
+      )
+    })
   })
 })
