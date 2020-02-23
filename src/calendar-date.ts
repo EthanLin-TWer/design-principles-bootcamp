@@ -1,12 +1,16 @@
 import { Month } from './date-components/month'
 import { Day } from './date-components/day'
+import { Year } from './date-components/year'
 
 export class CalendarDate {
   private readonly date: Date
   private readonly month: Month
+  private readonly year: Year
+
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
     this.month = Month.valueOf(this.getCurrentMonth())
+    this.year = new Year(this.getCurrentYear())
   }
 
   static of(year: number, month: number, day: number): CalendarDate {
