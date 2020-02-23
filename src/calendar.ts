@@ -1,4 +1,5 @@
 import { CalendarDate } from './calendar-date'
+import { ConsolePrinter } from './printers/console-printer'
 
 export class Calendar {
   private readonly date: CalendarDate
@@ -10,17 +11,11 @@ export class Calendar {
 
   public printCurrentWeek(): string {
     const currentWeekData: number[] = this.generateCurrentWeekData()
-    return this.print(currentWeekData)
+    return this.print(Calendar.HEADER, currentWeekData)
   }
 
-  private print(data: number[]) {
-    const header = Calendar.HEADER.join('\t')
-    const content = data
-      .map((date) => (date >= 10 ? date.toString() : `${date} `))
-      .join('  ')
-      .trimEnd()
-
-    return `${header}\n${content}`
+  private print(headers: string[], data: number[]) {
+    return new ConsolePrinter(headers, data).print()
   }
 
   private generateCurrentWeekData(): number[] {
