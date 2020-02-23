@@ -8,7 +8,6 @@
   - 输入：指定日期（yyyy-mm-dd 格式）；
   - 输出：该日期所属周的日历，文本形式
 - make public value of `Month/DateComponent` private
-- make public value of `Year` private
 - expressiveness of test data
 
 ## feedback

@@ -16,7 +16,7 @@ export class CalendarDate {
   static of(year: Year, month: number, day: number): CalendarDate {
     const MM = Month.valueOf(month).asMM()
     const DD = new Day(day).asDD()
-    return new CalendarDate(`${year.value}-${MM}-${DD}`)
+    return new CalendarDate(`${year.getValue()}-${MM}-${DD}`)
   }
 
   private ofSameMonth(day: number): CalendarDate {

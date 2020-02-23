@@ -1,5 +1,5 @@
 export class Year {
-  public value: number
+  private readonly value: number
   constructor(year: number) {
     this.value = year
   }
@@ -17,5 +17,9 @@ export class Year {
     return (
       this.value % 400 === 0 || (this.value % 4 === 0 && this.value % 100 !== 0)
     )
+  }
+
+  public getValue(): number {
+    return this.value
   }
 }
