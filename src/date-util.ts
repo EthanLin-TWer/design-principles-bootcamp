@@ -6,7 +6,7 @@ export class DateUtil {
 
   public getFirstDayOfTheWeek(): DateUtil {
     const dayOfTheWeek = this.date.getDay() + 1
-    if (this.date.getDate() - dayOfTheWeek > 0) {
+    if (!this.isFirstWeekOfTheMonth()) {
       const year = this.date.getFullYear()
       const month = this.date.getMonth() + 1
       const day = this.date.getDate() - dayOfTheWeek + 1
@@ -14,6 +14,7 @@ export class DateUtil {
         `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
       )
     }
+
     const offset = this.date.getDate() - dayOfTheWeek
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
     const day = daysOfLastMonth + offset + 1
@@ -24,6 +25,11 @@ export class DateUtil {
     return new DateUtil(
       `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
     )
+  }
+
+  private isFirstWeekOfTheMonth() {
+    const dayOfTheWeek = this.date.getDay() + 1
+    return this.date.getDate() - dayOfTheWeek <= 0
   }
 
   public getNextDay(howManyDays: number): DateUtil {
