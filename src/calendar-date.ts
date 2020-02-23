@@ -1,5 +1,5 @@
-import { Month } from './month'
-import { padToTwoDigits } from './utils/string'
+import { Month } from './date-components/month'
+import { Day } from './date-components/day'
 
 export class CalendarDate {
   private readonly date: Date
@@ -8,8 +8,8 @@ export class CalendarDate {
   }
 
   static of(year: number, month: number, day: number): CalendarDate {
-    const MM = padToTwoDigits(month)
-    const DD = padToTwoDigits(day)
+    const MM = new Month(month).asMM()
+    const DD = new Day(day).asDD()
     return new CalendarDate(`${year}-${MM}-${DD}`)
   }
 
