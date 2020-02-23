@@ -7,8 +7,7 @@ export class ConsolePrinter {
     const content = days
       .map((day) => day.addTrailingSpaceForDaysBefore10th())
       .join('  ')
-      .trimEnd()
 
-    return `${header}\n${content}`
+    return `${header}\n${content}`.trimEnd()
   }
 }
