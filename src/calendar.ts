@@ -18,7 +18,8 @@ export class Calendar {
       Array.from({ length: 7 })
         .fill(this.date.getFirstDayOfTheWeek())
         // @ts-ignore
-        .map((date: DateUtil, i: number) => date.getNextDay(i).toString())
+        .map((date: DateUtil, i: number) => date.getNextDay(i).getDate())
+        .map((date) => (date >= 10 ? date.toString() : `${date} `))
         .join('  ')
         .trimEnd()
     )

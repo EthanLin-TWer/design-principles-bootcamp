@@ -66,12 +66,8 @@ export class DateUtil {
     )
   }
 
-  public toString(): string {
-    const date = this.date.getDate()
-    if (date >= 10) {
-      return date.toString()
-    }
-    return `${date} `
+  public getDate(): number {
+    return this.date.getDate()
   }
 
   private getTotalDaysOf(month: number): number {
