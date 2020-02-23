@@ -39,7 +39,9 @@ export class CalendarDate {
       )
     }
 
-    const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
+    const daysOfLastMonth = this.month
+      .previous()
+      .getTotalDays(this.isLeapYear())
     const month = this.getPreviousMonth()
     return this.ofSameYear(month, daysOfLastMonth + offset)
   }
@@ -73,10 +75,6 @@ export class CalendarDate {
 
   public getDate(): Day {
     return new Day(this.date.getDate())
-  }
-
-  private getTotalDaysOf(month: number): number {
-    return Month.valueOf(month).getTotalDays(this.isLeapYear())
   }
 
   private getPreviousMonth() {
