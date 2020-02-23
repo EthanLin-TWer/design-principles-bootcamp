@@ -21,35 +21,12 @@ export class Calendar {
       Array.from({ length: 7 })
         .fill(this.date.getDate() - dayOfTheWeek)
         // @ts-ignore
-        .map(this.getNextDay)
+        .map((date: number, i: number) => {
+          return this.dateUtil.getNextDay(date, i)
+        })
         .map((date) => `${date}${date >= 10 ? '  ' : '   '}`)
         .join('')
         .trimEnd()
     )
-  }
-
-  private getNextDay = (date: number, i: number) => {
-    if (date + i <= 0) {
-      // eslint-disable-next-line no-invalid-this
-      return this.dateUtil.getTotalDaysOf(this.getPreviousMonth()) + date + i
-    }
-
-    // eslint-disable-next-line no-invalid-this
-    if (
-      date + i <=
-      this.dateUtil.getTotalDaysOf(this.dateUtil.getCurrentMonth())
-    ) {
-      return date + i
-    }
-
-    // eslint-disable-next-line no-invalid-this
-    return (
-      (date + i) % this.dateUtil.getTotalDaysOf(this.dateUtil.getCurrentMonth())
-    )
-  }
-
-  // can go to date objects
-  private getPreviousMonth() {
-    return this.dateUtil.getCurrentMonth() - 1
   }
 }

@@ -4,17 +4,33 @@ export class DateUtil {
     this.date = new Date(dateInYYYYmmDD)
   }
 
-  public getCurrentMonth(): number {
-    return this.date.getMonth()
+  public getNextDay(date: number, i: number) {
+    if (date + i <= 0) {
+      return this.getTotalDaysOf(this.getPreviousMonth()) + date + i
+    }
+
+    if (date + i <= this.getTotalDaysOf(this.getCurrentMonth())) {
+      return date + i
+    }
+
+    return (date + i) % this.getTotalDaysOf(this.getCurrentMonth())
   }
 
-  public getTotalDaysOf(currentMonth: number): number {
+  private getTotalDaysOf(currentMonth: number): number {
     if (this.isFebruary(currentMonth) && this.isLeapYear()) {
       return 29
     }
 
     const lastMonthTotalDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     return lastMonthTotalDays[currentMonth]
+  }
+
+  private getPreviousMonth() {
+    return this.getCurrentMonth() - 1
+  }
+
+  private getCurrentMonth(): number {
+    return this.date.getMonth()
   }
 
   private isFebruary(month: number) {
