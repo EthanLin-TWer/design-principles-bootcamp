@@ -4,10 +4,14 @@ export class DateUtil {
     this.date = new Date(dateInYYYYmmDD)
   }
 
-  static of(year, month, day): DateUtil {
+  static of(year: number, month: number, day: number): DateUtil {
     const MM = DateUtil.padToTwoDigits(month)
     const DD = DateUtil.padToTwoDigits(day)
     return new DateUtil(`${year}-${MM}-${DD}`)
+  }
+
+  private ofSameMonth(day: number): DateUtil {
+    return DateUtil.of(this.getCurrentYear(), this.getCurrentMonth(), day)
   }
 
   static padToTwoDigits(number: any) {
@@ -17,9 +21,7 @@ export class DateUtil {
   public getFirstDayOfTheWeek(): DateUtil {
     const offset = this.date.getDate() - this.date.getDay()
     if (!this.isFirstWeekOfTheMonth()) {
-      const year = this.getCurrentYear()
-      const month = this.getCurrentMonth()
-      return DateUtil.of(year, month, offset)
+      return this.ofSameMonth(offset)
     }
 
     if (this.isJanuary()) {
@@ -41,14 +43,9 @@ export class DateUtil {
   }
 
   public getNextDay(howManyDays: number): DateUtil {
-    if (
-      this.date.getDate() + howManyDays <=
-      this.getTotalDaysOf(this.getCurrentMonth())
-    ) {
-      const year = this.date.getFullYear()
-      const month = DateUtil.padToTwoDigits(this.date.getMonth() + 1)
-      const days = DateUtil.padToTwoDigits(this.date.getDate() + howManyDays)
-      return new DateUtil(`${year}-${month}-${days}`)
+    if (this.isWithCurrentMonth(howManyDays)) {
+      const days = this.date.getDate() + howManyDays
+      return this.ofSameMonth(days)
     }
 
     const currentMonth = this.date.getMonth() + 1
@@ -63,6 +60,13 @@ export class DateUtil {
         this.getTotalDaysOf(this.getCurrentMonth())
     )
     return new DateUtil(`${year}-${month}-${days}`)
+  }
+
+  private isWithCurrentMonth(howManyDays: number) {
+    return (
+      this.date.getDate() + howManyDays <=
+      this.getTotalDaysOf(this.getCurrentMonth())
+    )
   }
 
   public toString(): string {
