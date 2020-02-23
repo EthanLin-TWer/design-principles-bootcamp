@@ -95,9 +95,4 @@ export class CalendarDate {
   private getNextYear() {
     return this.year.next().value
   }
-
-  // can be implemented with date libraries
-  private isLeapYear(): boolean {
-    return this.year.isLeap()
-  }
 }

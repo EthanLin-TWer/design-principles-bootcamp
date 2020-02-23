@@ -12,6 +12,7 @@ export class Year {
     return new Year(this.value + 1)
   }
 
+  // can be implemented with date libraries
   public isLeap(): boolean {
     return (
       this.value % 400 === 0 || (this.value % 4 === 0 && this.value % 100 !== 0)
