@@ -2,26 +2,24 @@ import { CalendarDate } from './calendar-date'
 import { ConsolePrinter } from './printers/console-printer'
 
 export class Calendar {
-  private readonly date: CalendarDate
-  constructor(date: string) {
-    this.date = new CalendarDate(date)
+  private printer: ConsolePrinter
+  constructor(printer: ConsolePrinter) {
+    this.printer = printer
   }
 
-  protected static HEADER: string[] = ['日', '一', '二', '三', '四', '五', '六']
-
-  public printCurrentWeek(): string {
-    const currentWeekData: number[] = this.generateCurrentWeekData()
-    return this.print(Calendar.HEADER, currentWeekData)
+  public printCurrentWeek(date: string): string {
+    const data: number[] = Calendar.generateCurrentWeekData(
+      new CalendarDate(date)
+    )
+    return this.printer.print(Calendar.HEADER, data)
   }
 
-  private print(headers: string[], data: number[]) {
-    return new ConsolePrinter(headers, data).print()
-  }
+  private static HEADER: string[] = ['日', '一', '二', '三', '四', '五', '六']
 
-  private generateCurrentWeekData(): number[] {
+  private static generateCurrentWeekData(date: CalendarDate): number[] {
     const result: number[] = []
 
-    const firstDayOfTheWeek: CalendarDate = this.date.getFirstDayOfTheWeek()
+    const firstDayOfTheWeek: CalendarDate = date.getFirstDayOfTheWeek()
     for (let i = 0; i < 7; i += 1) {
       result.push(firstDayOfTheWeek.getNextDay(i).getDate())
     }

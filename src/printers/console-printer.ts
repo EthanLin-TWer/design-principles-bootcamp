@@ -1,14 +1,7 @@
 export class ConsolePrinter {
-  private headers: string[]
-  private data: number[]
-  constructor(headers: string[], data: number[]) {
-    this.headers = headers
-    this.data = data
-  }
-
-  public print(): string {
-    const header = this.headers.join('\t')
-    const content = this.data
+  public print(headers: string[], data: number[]): string {
+    const header = headers.join('\t')
+    const content = data
       .map((date) => (date >= 10 ? date.toString() : `${date} `))
       .join('  ')
       .trimEnd()
