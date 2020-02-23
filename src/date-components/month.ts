@@ -40,8 +40,16 @@ export class Month extends DateComponent {
     return Month.Values.find((result) => result.value === month) || Month.NULL
   }
 
-  asMM() {
+  public asMM(): string {
     return this.asPrintable()
+  }
+
+  public getTotalDays(isLeapYear: boolean): number {
+    if (this === Month.TEMP_FEBRUARY && isLeapYear) {
+      return 29
+    }
+
+    return this.totalDays
   }
 
   is(month: Month) {

@@ -76,12 +76,7 @@ export class CalendarDate {
   }
 
   private getTotalDaysOf(month: number): number {
-    if (month === Month.FEBRUARY && this.isLeapYear()) {
-      return 29
-    }
-
-    const oops = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-    return oops[month]
+    return Month.valueOf(month).getTotalDays(this.isLeapYear())
   }
 
   private getPreviousMonth() {
