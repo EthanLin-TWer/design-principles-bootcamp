@@ -4,6 +4,33 @@ export class DateUtil {
     this.date = new Date(dateInYYYYmmDD)
   }
 
+  public getFirstDayOfTheWeek(): DateUtil {
+    const dayOfTheWeek = this.date.getDay()
+    if (this.date.getDate() - dayOfTheWeek < 0) {
+      const offset = this.date.getDate() - dayOfTheWeek
+      const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
+      const day = daysOfLastMonth + offset - 1
+      const fullYear = this.date.getFullYear()
+      const month = this.getCurrentMonth() === 0 ? 12 : this.getCurrentMonth()
+      const year = month === 12 ? fullYear - 1 : fullYear
+
+      return new DateUtil(
+        `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
+      )
+    }
+
+    const year = this.date.getFullYear()
+    const month = this.date.getMonth() + 1
+    const day = this.date.getDate() - dayOfTheWeek
+    return new DateUtil(
+      `${year}-${this.padToTwoDigits(month)}-${this.padToTwoDigits(day)}`
+    )
+  }
+
+  private padToTwoDigits(number: number): string {
+    return number.toString().length === 1 ? `0${number}` : number.toString()
+  }
+
   public getNextDay(date: number, i: number) {
     if (date + i <= 0) {
       return this.getTotalDaysOf(this.getPreviousMonth()) + date + i
