@@ -7,4 +7,8 @@ export class Year {
   public previous(): Year {
     return new Year(this.value - 1)
   }
+
+  public next(): Year {
+    return new Year(this.value + 1)
+  }
 }

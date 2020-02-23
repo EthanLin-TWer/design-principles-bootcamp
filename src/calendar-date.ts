@@ -96,7 +96,7 @@ export class CalendarDate {
   }
 
   private getNextYear() {
-    return this.getCurrentYear() + 1
+    return this.year.next().value
   }
 
   // can be implemented with date libraries
