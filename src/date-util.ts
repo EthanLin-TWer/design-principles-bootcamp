@@ -45,12 +45,14 @@ export class DateUtil {
   }
 
   public getNextDay(howManyDays: number): DateUtil {
+    const offset = this.date.getDate() + howManyDays
     if (!this.isCrossingToNextMonth(howManyDays)) {
-      const days = this.date.getDate() + howManyDays
-      return this.ofSameMonth(days)
+      return this.ofSameMonth(offset)
     }
 
-    if (this.isDecember()) {
+    if (!this.isDecember()) {
+      const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
+      return this.ofSameYear(this.getNextMonth(), days)
     }
 
     const currentMonth = this.date.getMonth() + 1
@@ -60,9 +62,7 @@ export class DateUtil {
       currentMonth === 12 ? 1 : currentMonth + 1
     )
     const days = DateUtil.padToTwoDigits(
-      this.date.getDate() +
-        howManyDays -
-        this.getTotalDaysOf(this.getCurrentMonth())
+      offset - this.getTotalDaysOf(this.getCurrentMonth())
     )
     return new DateUtil(`${year}-${month}-${days}`)
   }
@@ -99,6 +99,10 @@ export class DateUtil {
     return this.date.getMonth() + 1
   }
 
+  private getNextMonth() {
+    return this.getCurrentMonth() + 1
+  }
+
   private getLastYear() {
     return this.getCurrentYear() - 1
   }
@@ -107,8 +111,8 @@ export class DateUtil {
     return this.date.getFullYear()
   }
 
-  private isFebruary(month: number) {
-    return month === 2
+  private getNextYear() {
+    return this.getCurrentYear() + 1
   }
 
   // can be implemented with date libraries
@@ -122,6 +126,10 @@ export class DateUtil {
 
   private isJanuary(): boolean {
     return this.getCurrentMonth() === 1
+  }
+
+  private isFebruary(month: number) {
+    return month === 2
   }
 
   private isDecember() {
