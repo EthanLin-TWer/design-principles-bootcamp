@@ -7,4 +7,13 @@ export class DateUtil {
   public getCurrentMonth(): number {
     return this.date.getMonth()
   }
+
+  // can be implemented with date libraries
+  public isLeapYear(): boolean {
+    const currentYear = this.date.getFullYear()
+    return (
+      currentYear % 400 === 0 ||
+      (currentYear % 4 === 0 && currentYear % 100 !== 0)
+    )
+  }
 }

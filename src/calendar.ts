@@ -45,7 +45,7 @@ export class Calendar {
 
   // can go to date objects
   private getTotalDaysOf(currentMonth: number) {
-    if (this.isFebruary(currentMonth) && this.isLeapYear()) {
+    if (this.isFebruary(currentMonth) && this.dateUtil.isLeapYear()) {
       return 29
     }
 
@@ -61,15 +61,5 @@ export class Calendar {
   // can go to date objects
   private isFebruary(month: number) {
     return month + 1 === 2
-  }
-
-  // can go to date objects
-  // can be implemented with date libraries
-  private isLeapYear() {
-    const currentYear = this.date.getFullYear()
-    return (
-      currentYear % 400 === 0 ||
-      (currentYear % 4 === 0 && currentYear % 100 !== 0)
-    )
   }
 }
