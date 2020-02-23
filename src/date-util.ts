@@ -1,3 +1,5 @@
+import { Month } from './month'
+
 export class DateUtil {
   private readonly date: Date
   constructor(dateInYYYYmmDD: string) {
@@ -28,10 +30,10 @@ export class DateUtil {
       return this.ofSameMonth(offset)
     }
 
-    if (this.isJanuary()) {
-      const daysOfLastMonth = this.getTotalDaysOf(12)
+    if (this.getCurrentMonth() === Month.JANUARY) {
+      const daysOfLastMonth = this.getTotalDaysOf(Month.DECEMBER)
       const year = this.getLastYear()
-      return DateUtil.of(year, 12, daysOfLastMonth + offset)
+      return DateUtil.of(year, Month.DECEMBER, daysOfLastMonth + offset)
     }
 
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
@@ -50,7 +52,7 @@ export class DateUtil {
       return this.ofSameMonth(offset)
     }
 
-    if (!this.isDecember()) {
+    if (!(this.getCurrentMonth() === Month.DECEMBER)) {
       const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
       return this.ofSameYear(this.getNextMonth(), days)
     }
@@ -71,7 +73,7 @@ export class DateUtil {
   }
 
   private getTotalDaysOf(month: number): number {
-    if (this.isFebruary(month) && this.isLeapYear()) {
+    if (month === Month.FEBRUARY && this.isLeapYear()) {
       return 29
     }
 
@@ -110,17 +112,5 @@ export class DateUtil {
       currentYear % 400 === 0 ||
       (currentYear % 4 === 0 && currentYear % 100 !== 0)
     )
-  }
-
-  private isJanuary(): boolean {
-    return this.getCurrentMonth() === 1
-  }
-
-  private isFebruary(month: number) {
-    return month === 2
-  }
-
-  private isDecember() {
-    return this.getCurrentMonth() === 12
   }
 }
