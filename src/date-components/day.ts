@@ -11,13 +11,18 @@ export class Day extends DateComponent {
     this.year = year
   }
 
-  next(fewDays: number) {
+  next(fewDays: number): Day {
     const nextDay = this.value + fewDays
     if (nextDay <= this.month.getTotalDays(this.year)) {
-      return nextDay
+      return new Day(nextDay, this.month, this.year)
     }
 
-    return nextDay - this.month.getTotalDays(this.year)
+    const day = nextDay - this.month.getTotalDays(this.year)
+    if (this.month !== Month.DECEMBER) {
+      return new Day(day, this.month.next(), this.year)
+    }
+
+    return new Day(day, this.month.next(), this.year)
   }
 
   previous(fewDays: number) {

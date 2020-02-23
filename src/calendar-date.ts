@@ -10,8 +10,8 @@ export class CalendarDate {
 
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
-    this.year = new Year(this.date.getFullYear())
     this.month = Month.valueOf(this.date.getMonth() + 1)
+    this.year = new Year(this.date.getFullYear())
     this.day = new Day(this.date.getDate(), this.month, this.year)
   }
 
@@ -39,34 +39,11 @@ export class CalendarDate {
   }
 
   public getNextDay(howManyDays: number): Day {
-    const day = this.day.next(howManyDays)
-    if (this.isWithinSameMonth(howManyDays)) {
-      return CalendarDate.of(this.year, this.month, day).getDate()
-    }
-
-    if (this.isWithinSameYear(howManyDays)) {
-      return CalendarDate.of(this.year, this.month.next(), day).getDate()
-    }
-
-    return CalendarDate.of(this.year.next(), this.month.next(), day).getDate()
-  }
-
-  public getDate(): Day {
-    return this.day
+    return this.day.next(howManyDays)
   }
 
   private isGoingBackOneMonth() {
     const dayOfTheWeek = this.date.getDay() + 1
     return this.date.getDate() - dayOfTheWeek <= 0
-  }
-
-  private isWithinSameMonth(howManyDays: number) {
-    return (
-      this.date.getDate() + howManyDays <= this.month.getTotalDays(this.year)
-    )
-  }
-
-  private isWithinSameYear(howManyDays) {
-    return !this.isWithinSameMonth(howManyDays) && this.month !== Month.DECEMBER
   }
 }
