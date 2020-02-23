@@ -53,13 +53,13 @@ export class CalendarDate {
       return this.ofSameMonth(offset)
     }
 
-    if (this.month !== Month.DECEMBER) {
+    if (this.month === Month.DECEMBER) {
       const days = offset - this.month.getTotalDays(this.year)
-      return this.ofSameYear(this.month.next(), days)
+      return CalendarDate.of(this.year.next(), Month.JANUARY, days)
     }
 
     const days = offset - this.month.getTotalDays(this.year)
-    return CalendarDate.of(this.year.next(), Month.JANUARY, days)
+    return this.ofSameYear(this.month.next(), days)
   }
 
   public getDate(): Day {
