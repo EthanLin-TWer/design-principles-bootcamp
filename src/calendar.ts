@@ -8,20 +8,26 @@ export class Calendar {
   }
 
   public printCurrentWeek(): string {
-    const header: string = '日\t一\t二\t三\t四\t五\t六'
-    const content: string = this.generateCurrentWeekInfo()
+    const content: number[] = this.generateCurrentWeekInfo()
+    return this.print(content)
+  }
+
+  private print(data: number[]) {
+    const header = '日\t一\t二\t三\t四\t五\t六'
+    const content = data
+      .map((date) => (date >= 10 ? date.toString() : `${date} `))
+      .join('  ')
+      .trimEnd()
+
     return `${header}\n${content}`
   }
 
-  private generateCurrentWeekInfo(): string {
+  private generateCurrentWeekInfo(): number[] {
     return (
       Array.from({ length: 7 })
         .fill(this.date.getFirstDayOfTheWeek())
         // @ts-ignore
         .map((date: DateUtil, i: number) => date.getNextDay(i).getDate())
-        .map((date) => (date >= 10 ? date.toString() : `${date} `))
-        .join('  ')
-        .trimEnd()
     )
   }
 }
