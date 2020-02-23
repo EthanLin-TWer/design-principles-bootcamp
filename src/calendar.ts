@@ -2,7 +2,6 @@ import { CalendarDate } from './calendar-date'
 
 export class Calendar {
   private readonly date: CalendarDate
-
   constructor(date: string) {
     this.date = new CalendarDate(date)
   }

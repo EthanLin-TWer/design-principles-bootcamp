@@ -3,8 +3,10 @@ import { Day } from './date-components/day'
 
 export class CalendarDate {
   private readonly date: Date
+  private readonly month: Month
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
+    this.month = new Month(this.getCurrentMonth())
   }
 
   static of(year: number, month: number, day: number): CalendarDate {
@@ -27,10 +29,14 @@ export class CalendarDate {
       return this.ofSameMonth(offset)
     }
 
-    if (this.getCurrentMonth() === Month.JANUARY) {
-      const daysOfLastMonth = this.getTotalDaysOf(Month.DECEMBER)
+    if (this.month.is(Month.JANUARY)) {
+      const daysOfLastMonth = this.getTotalDaysOf(Month.DECEMBER.value)
       const year = this.getLastYear()
-      return CalendarDate.of(year, Month.DECEMBER, daysOfLastMonth + offset)
+      return CalendarDate.of(
+        year,
+        Month.DECEMBER.value,
+        daysOfLastMonth + offset
+      )
     }
 
     const daysOfLastMonth = this.getTotalDaysOf(this.getPreviousMonth())
@@ -49,7 +55,7 @@ export class CalendarDate {
       return this.ofSameMonth(offset)
     }
 
-    if (!(this.getCurrentMonth() === Month.DECEMBER)) {
+    if (!this.month.is(Month.DECEMBER)) {
       const days = offset - this.getTotalDaysOf(this.getCurrentMonth())
       return this.ofSameYear(this.getNextMonth(), days)
     }

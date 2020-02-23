@@ -1,5 +1,6 @@
 export abstract class DateComponent {
-  protected readonly value: number
+  // TODO: [Linesh][2020-02-23] changed to protected later
+  public readonly value: number
   constructor(value: number) {
     this.value = value
   }
