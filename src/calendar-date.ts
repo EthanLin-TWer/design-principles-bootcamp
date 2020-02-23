@@ -6,11 +6,11 @@ export class CalendarDate {
   private readonly month: Month
   constructor(dateInYYYYmmDD: string) {
     this.date = new Date(dateInYYYYmmDD)
-    this.month = new Month(this.getCurrentMonth())
+    this.month = Month.valueOf(this.getCurrentMonth())
   }
 
   static of(year: number, month: number, day: number): CalendarDate {
-    const MM = new Month(month).asMM()
+    const MM = Month.valueOf(month).asMM()
     const DD = new Day(day).asDD()
     return new CalendarDate(`${year}-${MM}-${DD}`)
   }
