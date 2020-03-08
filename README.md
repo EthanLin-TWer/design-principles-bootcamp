@@ -1,17 +1,7 @@
-# calendar-app README
+# README
 
-参考 Windows 日历，不考虑界面，在 console 控制台以文本形式输出：某日期所属周的日历打印。
+项目地址：[https://github.com/linesh-simplicity/design-principles-bootcamp/releases](https://github.com/linesh-simplicity/design-principles-bootcamp/releases)。
 
-任务：
+拉取命令：
 
-- 输入指定日期，以文本形式输出日期【所属周】的日历， 比如，输入：2020-01-09，输出如下：
-  - 输入：指定日期（yyyy-mm-dd 格式）；
-  - 输出：该日期所属周的日历，文本形式
-- possible performance issue in `Month`
-- expressiveness of test data
-
-## feedback
-
-1. 了解面向对象基本知识 -> 这个前提是否能对多数学员通用呢？
-2. a lot of videos - good
-3. 2-项目剖析 段落结尾有一处“~> 段落引用”是什么？
+> git clone git@github.com:linesh-simplicity/design-principles-bootcamp.git

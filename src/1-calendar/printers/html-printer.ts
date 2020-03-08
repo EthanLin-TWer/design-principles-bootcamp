@@ -5,16 +5,9 @@ export class HtmlPrinter extends Printer {
   print(headers: string[], days: Day[]): string {
     const header: string = this.generateHeaderRow(headers)
     const content: string = this.renderWeeksInfo(days)
-    return `
-      <table>
-        <thead>
-          ${header}
-        </thead>      
-        <tbody>
-          ${content}
-        </tbody>      
-      </table>
-    `.replace(/([ \n])/g, '')
+    const result = `<table><thead>${header}</thead><tbody>${content}</tbody></table>`
+
+    return result.trimStart().trimEnd()
   }
 
   private generateHeaderRow(headers: string[]) {
