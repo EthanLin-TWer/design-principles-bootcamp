@@ -3,16 +3,7 @@ import { Day } from '../date-components/day'
 
 export class HtmlPrinter extends Printer {
   print(headers: string[], days: Day[]): string {
-    const header: string = `          <tr>
-            <td>日</td>
-            <td>一</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-          </tr>
-`
+    const header: string = this.generateHeaderRow(headers)
     const content: string = `          <tr>
             <td>9</td>
             <td>10</td>
@@ -33,5 +24,11 @@ export class HtmlPrinter extends Printer {
         </tbody>      
       </table>
     `.replace(/([ \n])/g, '')
+  }
+
+  private generateHeaderRow(headers: string[]) {
+    const headerRow = headers.map((header) => `<td>${header}</td>`).join('')
+
+    return `<tr>${headerRow}</tr>`
   }
 }
