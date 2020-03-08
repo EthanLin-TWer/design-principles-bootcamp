@@ -53,6 +53,10 @@ export class Day extends DateComponent {
     return this.value >= 10 ? this.value.toString() : `${this.value} `
   }
 
+  public getValue(): number {
+    return this.value
+  }
+
   public asYYYYmmDD() {
     return `${this.year.getValue()}-${this.month.asMM()}-${this.asDD()}`
   }
