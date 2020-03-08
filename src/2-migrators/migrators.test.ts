@@ -2,7 +2,10 @@ import { Migrators } from './migrators'
 
 describe('Migrators', () => {
   it('should return scheduling of wild goose and swallows', () => {
-    const result: string[] = new Migrators('wild goose', 'swallow').main()
+    const result: string[] = new Migrators(
+      'wild goose',
+      'swallow'
+    ).printScheduling()
     expect(result).toEqual([
       "It's 7:00, I'm WildGoose, I'm eating",
       "It's 7:00, I'm Swallow, I'm eating",
@@ -20,7 +23,8 @@ describe('Migrators', () => {
       'wild goose',
       'swallow',
       'penguin'
-    ).main()
+    ).printScheduling()
+
     expect(result).toEqual([
       "It's 7:00, I'm WildGoose, I'm eating",
       "It's 7:00, I'm Swallow, I'm eating",

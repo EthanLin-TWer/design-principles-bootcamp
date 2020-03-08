@@ -4,7 +4,7 @@ export class Migrators {
     this.animals = animals
   }
 
-  public main(): string[] {
+  public printScheduling(): string[] {
     if (this.animals.length === 3) {
       return [
         "It's 7:00, I'm WildGoose, I'm eating",
