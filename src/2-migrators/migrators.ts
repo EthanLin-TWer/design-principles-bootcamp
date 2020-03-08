@@ -1,6 +1,7 @@
+import { Animal } from './animals/base'
 export class Migrators {
-  private animals: string[]
-  constructor(...animals: string[]) {
+  private animals: Animal[]
+  constructor(...animals: Animal[]) {
     this.animals = animals
   }
 

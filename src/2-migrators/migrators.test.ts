@@ -1,11 +1,15 @@
 import { Migrators } from './migrators'
+import { WildGoose } from './animals/WildGoose'
+import { Swallow } from './animals/Penguin'
+import { Penguin } from './animals/Swallow'
 
 describe('Migrators', () => {
   it('should return scheduling of wild goose and swallows', () => {
     const result: string[] = new Migrators(
-      'wild goose',
-      'swallow'
+      new WildGoose(),
+      new Swallow()
     ).printScheduling()
+
     expect(result).toEqual([
       "It's 7:00, I'm WildGoose, I'm eating",
       "It's 7:00, I'm Swallow, I'm eating",
@@ -20,9 +24,9 @@ describe('Migrators', () => {
 
   it('should return scheduling of wild goose, swallows and penguins', () => {
     const result: string[] = new Migrators(
-      'wild goose',
-      'swallow',
-      'penguin'
+      new WildGoose(),
+      new Swallow(),
+      new Penguin()
     ).printScheduling()
 
     expect(result).toEqual([
