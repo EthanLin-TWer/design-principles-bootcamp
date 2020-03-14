@@ -9,7 +9,7 @@ export class Schedule {
     this.activity = activity
   }
 
-  toString() {
+  print() {
     return `It's ${this.timeIn24Hours}:00, I'm ${this.attendee}, I'm ${this.activity}`
   }
 }
