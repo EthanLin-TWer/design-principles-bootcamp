@@ -8,26 +8,26 @@ export abstract class Animal {
   }
 
   public walking(): string {
-    return `It's 8:00, I'm ${this.getName()}, I'm walking`
+    return new Schedule(this.getName(), 8, `walking`).toString()
   }
 
   public performing(): string {
-    return `It's 9:00, I'm ${this.getName()}, I'm performing`
+    return new Schedule(this.getName(), 9, `performing`).toString()
   }
 
   public flying(): string {
-    return `It's 10:00, I'm ${this.getName()}, I'm flying`
+    return new Schedule(this.getName(), 10, `flying`).toString()
   }
 
   public swimming(): string {
-    return `It's 11:00, I'm ${this.getName()}, I'm swimming`
+    return new Schedule(this.getName(), 11, `swimming`).toString()
   }
 
   public programming(): string {
-    return `It's 13:00, I'm ${this.getName()}, I'm programming`
+    return new Schedule(this.getName(), 13, `programming`).toString()
   }
 
   public building(): string {
-    return `It's 14:00, I'm ${this.getName()}, I'm building a house`
+    return new Schedule(this.getName(), 14, `building a house`).toString()
   }
 }
