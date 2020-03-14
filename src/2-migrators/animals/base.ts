@@ -1,6 +1,15 @@
 import { Schedule } from '../schedules/base'
 
 export abstract class Animal {
+  private readonly _schedules: Schedule[]
+  constructor(schedules: Schedule[] = []) {
+    this._schedules = schedules
+  }
+
+  getSchedules(): Schedule[] {
+    return this._schedules
+  }
+
   abstract getName(): string
 
   public eating(): string {
