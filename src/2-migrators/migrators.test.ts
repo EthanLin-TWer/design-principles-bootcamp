@@ -1,7 +1,7 @@
 import { Migrators } from './migrators'
 import { WildGoose } from './animals/WildGoose'
-import { Swallow } from './animals/Penguin'
-import { Penguin } from './animals/Swallow'
+import { Penguin } from './animals/Penguin'
+import { Swallow } from './animals/Swallow'
 
 describe('Migrators', () => {
   it('should return scheduling of wild goose, swallows and penguins', () => {

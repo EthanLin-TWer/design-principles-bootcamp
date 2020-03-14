@@ -1,20 +1,16 @@
 import { Animal } from './base'
 import { Schedule } from '../schedules/base'
 
-export class Penguin extends Animal {
+export class Swallow extends Animal {
   constructor() {
-    super([new Schedule('Penguin', 14, `building a house`)])
+    super([new Schedule('Swallow', 13, `programming`)])
   }
 
   public getName() {
-    return 'Penguin'
+    return 'Swallow'
   }
 
-  flying(): string {
-    return ''
-  }
-
-  programming(): string {
+  swimming(): string {
     return ''
   }
 }
