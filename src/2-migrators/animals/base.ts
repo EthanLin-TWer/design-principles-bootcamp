@@ -8,4 +8,8 @@ export abstract class Animal {
   public walking(): string {
     return `It's 8:00, I'm ${this.getName()}, I'm walking`
   }
+
+  public performing(): string {
+    return `It's 9:00, I'm ${this.getName()}, I'm performing`
+  }
 }

@@ -10,9 +10,7 @@ export class Migrators {
       return [
         ...this.animals.map((animal) => animal.eating()),
         ...this.animals.map((animal) => animal.walking()),
-        "It's 9:00, I'm WildGoose, I'm performing",
-        "It's 9:00, I'm Swallow, I'm performing",
-        "It's 9:00, I'm Penguin, I'm performing",
+        ...this.animals.map((animal) => animal.performing()),
         "It's 10:00, I'm WildGoose, I'm flying",
         "It's 10:00, I'm Swallow, I'm flying",
         "It's 11:00, I'm WildGoose, I'm swimming",
@@ -22,8 +20,7 @@ export class Migrators {
     return [
       ...this.animals.map((animal) => animal.eating()),
       ...this.animals.map((animal) => animal.walking()),
-      "It's 9:00, I'm WildGoose, I'm performing",
-      "It's 9:00, I'm Swallow, I'm performing",
+      ...this.animals.map((animal) => animal.performing()),
       "It's 10:00, I'm WildGoose, I'm flying",
       "It's 10:00, I'm Swallow, I'm flying",
     ]
