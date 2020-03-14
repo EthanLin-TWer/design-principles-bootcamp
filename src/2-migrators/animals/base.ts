@@ -1,11 +1,10 @@
+import { Schedule } from '../schedules/base'
+
 export abstract class Animal {
   abstract getName(): string
 
   public eating(): string {
-    const activity = `eating`
-    const timeIn24Hours = 7
-    const attendee = this.getName()
-    return `It's ${timeIn24Hours}:00, I'm ${attendee}, I'm ${activity}`
+    return new Schedule(this.getName(), 7, `eating`).toString()
   }
 
   public walking(): string {
