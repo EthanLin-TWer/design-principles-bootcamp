@@ -2,7 +2,10 @@ export abstract class Animal {
   abstract getName(): string
 
   public eating(): string {
-    return `It's 7:00, I'm ${this.getName()}, I'm eating`
+    const activity = `eating`
+    const timeIn24Hours = 7
+    const attendee = this.getName()
+    return `It's ${timeIn24Hours}:00, I'm ${attendee}, I'm ${activity}`
   }
 
   public walking(): string {
