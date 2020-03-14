@@ -8,9 +8,7 @@ export class Migrators {
   public printScheduling(): string[] {
     if (this.animals.length === 3) {
       return [
-        "It's 7:00, I'm WildGoose, I'm eating",
-        "It's 7:00, I'm Swallow, I'm eating",
-        "It's 7:00, I'm Penguin, I'm eating",
+        ...this.animals.map((animal) => animal.eating()),
         "It's 8:00, I'm WildGoose, I'm walking",
         "It's 8:00, I'm Swallow, I'm walking",
         "It's 8:00, I'm Penguin, I'm walking",
@@ -24,8 +22,7 @@ export class Migrators {
       ]
     }
     return [
-      "It's 7:00, I'm WildGoose, I'm eating",
-      "It's 7:00, I'm Swallow, I'm eating",
+      ...this.animals.map((animal) => animal.eating()),
       "It's 8:00, I'm WildGoose, I'm walking",
       "It's 8:00, I'm Swallow, I'm walking",
       "It's 9:00, I'm WildGoose, I'm performing",
