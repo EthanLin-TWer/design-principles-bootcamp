@@ -25,6 +25,8 @@ describe('Migrators', () => {
       "It's 10:00, I'm Swallow, I'm flying",
       "It's 11:00, I'm WildGoose, I'm swimming",
       "It's 11:00, I'm Penguin, I'm swimming",
+      "It's 13:00, I'm WildGoose, I'm programming",
+      "It's 13:00, I'm Swallow, I'm programming",
     ])
   })
 })
