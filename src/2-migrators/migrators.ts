@@ -9,9 +9,7 @@ export class Migrators {
     if (this.animals.length === 3) {
       return [
         ...this.animals.map((animal) => animal.eating()),
-        "It's 8:00, I'm WildGoose, I'm walking",
-        "It's 8:00, I'm Swallow, I'm walking",
-        "It's 8:00, I'm Penguin, I'm walking",
+        ...this.animals.map((animal) => animal.walking()),
         "It's 9:00, I'm WildGoose, I'm performing",
         "It's 9:00, I'm Swallow, I'm performing",
         "It's 9:00, I'm Penguin, I'm performing",
@@ -23,8 +21,7 @@ export class Migrators {
     }
     return [
       ...this.animals.map((animal) => animal.eating()),
-      "It's 8:00, I'm WildGoose, I'm walking",
-      "It's 8:00, I'm Swallow, I'm walking",
+      ...this.animals.map((animal) => animal.walking()),
       "It's 9:00, I'm WildGoose, I'm performing",
       "It's 9:00, I'm Swallow, I'm performing",
       "It's 10:00, I'm WildGoose, I'm flying",
