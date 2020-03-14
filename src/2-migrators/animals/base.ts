@@ -24,4 +24,8 @@ export abstract class Animal {
   public programming(): string {
     return `It's 13:00, I'm ${this.getName()}, I'm programming`
   }
+
+  public building(): string {
+    return `It's 14:00, I'm ${this.getName()}, I'm building a house`
+  }
 }

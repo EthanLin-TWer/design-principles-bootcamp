@@ -13,6 +13,7 @@ export class Migrators {
       ...this.animals.map((animal) => animal.flying()),
       ...this.animals.map((animal) => animal.swimming()),
       ...this.animals.map((animal) => animal.programming()),
+      ...this.animals.map((animal) => animal.building()),
     ].filter((nonEmpty) => nonEmpty)
   }
 }
