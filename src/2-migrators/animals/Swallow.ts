@@ -8,4 +8,8 @@ export class Penguin extends Animal {
   flying(): string {
     return ''
   }
+
+  programming(): string {
+    return ''
+  }
 }
