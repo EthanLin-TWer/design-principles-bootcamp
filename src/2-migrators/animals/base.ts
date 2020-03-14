@@ -35,8 +35,4 @@ export abstract class Animal {
   public programming(): string {
     return new Schedule(this.getName(), 13, `programming`).print()
   }
-
-  public building(): string {
-    return new Schedule(this.getName(), 14, `building a house`).print()
-  }
 }

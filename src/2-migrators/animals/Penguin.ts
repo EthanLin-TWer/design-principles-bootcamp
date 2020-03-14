@@ -8,8 +8,4 @@ export class Swallow extends Animal {
   swimming(): string {
     return ''
   }
-
-  building(): string {
-    return ''
-  }
 }

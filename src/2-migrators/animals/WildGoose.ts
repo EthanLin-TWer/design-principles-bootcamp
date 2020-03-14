@@ -4,8 +4,4 @@ export class WildGoose extends Animal {
   public getName() {
     return 'WildGoose'
   }
-
-  building(): string {
-    return ''
-  }
 }
