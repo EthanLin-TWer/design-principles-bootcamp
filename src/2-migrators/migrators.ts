@@ -11,18 +11,17 @@ export class Migrators {
         ...this.animals.map((animal) => animal.eating()),
         ...this.animals.map((animal) => animal.walking()),
         ...this.animals.map((animal) => animal.performing()),
-        "It's 10:00, I'm WildGoose, I'm flying",
-        "It's 10:00, I'm Swallow, I'm flying",
+        ...this.animals.map((animal) => animal.flying()),
         "It's 11:00, I'm WildGoose, I'm swimming",
         "It's 11:00, I'm Penguin, I'm swimming",
-      ]
+      ].filter((nonEmpty) => nonEmpty)
     }
+
     return [
       ...this.animals.map((animal) => animal.eating()),
       ...this.animals.map((animal) => animal.walking()),
       ...this.animals.map((animal) => animal.performing()),
-      "It's 10:00, I'm WildGoose, I'm flying",
-      "It's 10:00, I'm Swallow, I'm flying",
+      ...this.animals.map((animal) => animal.flying()),
     ]
   }
 }
