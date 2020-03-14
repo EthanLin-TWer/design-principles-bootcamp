@@ -20,4 +20,8 @@ export abstract class Animal {
   public swimming(): string {
     return `It's 11:00, I'm ${this.getName()}, I'm swimming`
   }
+
+  public programming(): string {
+    return `It's 13:00, I'm ${this.getName()}, I'm programming`
+  }
 }
