@@ -12,4 +12,8 @@ export class Schedule {
   print() {
     return `It's ${this.timeIn24Hours}:00, I'm ${this.attendee}, I'm ${this.activity}`
   }
+
+  isBefore(schedule: Schedule) {
+    return this.timeIn24Hours < schedule.timeIn24Hours
+  }
 }

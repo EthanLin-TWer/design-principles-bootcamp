@@ -3,7 +3,10 @@ import { Schedule } from '../schedules/base'
 
 export class WildGoose extends Animal {
   constructor() {
-    super([new Schedule('WildGoose', 13, `programming`)])
+    super([
+      new Schedule('WildGoose', 11, `swimming`),
+      new Schedule('WildGoose', 13, `programming`),
+    ])
   }
 
   public getName() {

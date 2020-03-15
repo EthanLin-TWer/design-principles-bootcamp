@@ -7,6 +7,8 @@ export class Schedules {
   }
 
   list(): string[] {
-    return this.schedules.map((schedule) => schedule.print())
+    return this.schedules
+      .sort((schedule, another) => (schedule.isBefore(another) ? -1 : 1))
+      .map((schedule) => schedule.print())
   }
 }

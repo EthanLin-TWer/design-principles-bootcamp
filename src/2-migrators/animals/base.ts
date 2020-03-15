@@ -27,8 +27,4 @@ export abstract class Animal {
   public flying(): string {
     return new Schedule(this.getName(), 10, `flying`).print()
   }
-
-  public swimming(): string {
-    return new Schedule(this.getName(), 11, `swimming`).print()
-  }
 }
