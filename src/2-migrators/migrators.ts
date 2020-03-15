@@ -14,6 +14,6 @@ export class Migrators {
   }
 
   public printScheduling(): string[] {
-    return this.schedules.list().filter((nonEmpty) => nonEmpty)
+    return this.schedules.list()
   }
 }
