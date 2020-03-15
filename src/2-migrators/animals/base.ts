@@ -2,7 +2,7 @@ import { Schedule } from '../schedules/base'
 
 export abstract class Animal {
   private readonly _schedules: Schedule[]
-  constructor(schedules: Schedule[] = []) {
+  protected constructor(schedules: Schedule[] = []) {
     this._schedules = [
       new Schedule(this.getName(), 7, `eating`),
       new Schedule(this.getName(), 8, `walking`),

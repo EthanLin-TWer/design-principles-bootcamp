@@ -1,5 +1,6 @@
 import { Animal } from './animals/base'
 import { Schedules } from './schedules/schedules'
+
 export class Migrators {
   private animals: Animal[]
   private schedules: Schedules
