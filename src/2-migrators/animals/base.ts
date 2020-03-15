@@ -5,15 +5,15 @@ import { Performing } from '../schedules/performing'
 
 export abstract class Bird {
   private readonly _schedules: Schedule[]
-  protected constructor(schedules: Schedule[] = []) {
-    const basicSchedules = [
+  protected constructor() {
+    this._schedules = [
       new Eating(this.getName()),
       new Walking(this.getName()),
       new Performing(this.getName()),
     ]
-
-    this._schedules = basicSchedules.concat(schedules)
   }
+
+  abstract getName(): string
 
   public getSchedules(): Schedule[] {
     return this._schedules
@@ -22,6 +22,4 @@ export abstract class Bird {
   protected addSchedules(schedules: Schedule[]): void {
     this._schedules.push(...schedules)
   }
-
-  abstract getName(): string
 }
