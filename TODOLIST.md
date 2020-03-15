@@ -1,5 +1,9 @@
 # TODOLIST
 
+## Project 3
+
+- fix travis
+
 ## Project 2
 
 - [x] should be able to register: what to do in what time - `Schedule`
