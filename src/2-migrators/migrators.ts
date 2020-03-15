@@ -17,7 +17,6 @@ export class Migrators {
     return [
       ...this.animals.map((animal) => animal.eating()),
       ...this.animals.map((animal) => animal.walking()),
-      ...this.animals.map((animal) => animal.performing()),
       ...this.schedules.list(),
     ].filter((nonEmpty) => nonEmpty)
   }

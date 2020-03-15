@@ -3,7 +3,9 @@ import { Schedule } from '../schedules/base'
 export abstract class Animal {
   private readonly _schedules: Schedule[]
   constructor(schedules: Schedule[] = []) {
-    this._schedules = schedules
+    this._schedules = [new Schedule(this.getName(), 9, `performing`)].concat(
+      schedules
+    )
   }
 
   getSchedules(): Schedule[] {
@@ -18,9 +20,5 @@ export abstract class Animal {
 
   public walking(): string {
     return new Schedule(this.getName(), 8, `walking`).print()
-  }
-
-  public performing(): string {
-    return new Schedule(this.getName(), 9, `performing`).print()
   }
 }
