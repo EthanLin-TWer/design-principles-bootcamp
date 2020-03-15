@@ -1,12 +1,14 @@
 import { Bird } from './base'
-import { Schedule } from '../schedules/base'
+import { Flying } from '../schedules/flying'
+import { Swimming } from '../schedules/swimming'
+import { Programming } from '../schedules/programming'
 
 export class WildGoose extends Bird {
   constructor() {
     super([
-      new Schedule('WildGoose', 10, `flying`),
-      new Schedule('WildGoose', 11, `swimming`),
-      new Schedule('WildGoose', 13, `programming`),
+      new Flying('WildGoose'),
+      new Swimming('WildGoose'),
+      new Programming('WildGoose'),
     ])
   }
 
