@@ -1,7 +1,7 @@
-import { Animal } from './base'
+import { Bird } from './base'
 import { Schedule } from '../schedules/base'
 
-export class Swallow extends Animal {
+export class Swallow extends Bird {
   constructor() {
     super([
       new Schedule('Swallow', 10, `flying`),

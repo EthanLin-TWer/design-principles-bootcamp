@@ -1,6 +1,6 @@
 import { Schedule } from '../schedules/base'
 
-export abstract class Animal {
+export abstract class Bird {
   private readonly _schedules: Schedule[]
   protected constructor(schedules: Schedule[] = []) {
     this._schedules = [

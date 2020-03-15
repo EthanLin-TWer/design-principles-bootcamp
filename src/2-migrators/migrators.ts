@@ -1,11 +1,11 @@
-import { Animal } from './animals/base'
+import { Bird } from './animals/base'
 import { Schedules } from './schedules/schedules'
 
 export class Migrators {
-  private animals: Animal[]
+  private animals: Bird[]
   private schedules: Schedules
 
-  constructor(...animals: Animal[]) {
+  constructor(...animals: Bird[]) {
     this.animals = animals
     this.schedules = new Schedules(
       this.animals
