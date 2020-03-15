@@ -1,6 +1,7 @@
 import { Schedule } from '../schedules/base'
 import { Eating } from '../schedules/eating'
 import { Walking } from '../schedules/walking'
+import { Performing } from '../schedules/performing'
 
 export abstract class Bird {
   private readonly _schedules: Schedule[]
@@ -8,11 +9,12 @@ export abstract class Bird {
     const basicSchedules = [
       new Eating(this.getName()),
       new Walking(this.getName()),
-      new Schedule(this.getName(), 9, `performing`),
+      new Performing(this.getName()),
     ]
 
     this._schedules = basicSchedules.concat(schedules)
   }
+
   public getSchedules(): Schedule[] {
     return this._schedules
   }
