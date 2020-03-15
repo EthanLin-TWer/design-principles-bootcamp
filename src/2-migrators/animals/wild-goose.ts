@@ -7,9 +7,9 @@ export class WildGoose extends Bird {
   constructor() {
     super()
     this.addSchedules([
-      new Flying('WildGoose'),
-      new Swimming('WildGoose'),
-      new Programming('WildGoose'),
+      new Flying(this.getName()),
+      new Swimming(this.getName()),
+      new Programming(this.getName()),
     ])
   }
 
