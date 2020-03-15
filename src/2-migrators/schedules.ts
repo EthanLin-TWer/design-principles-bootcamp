@@ -1,4 +1,4 @@
-import { Schedule } from './base'
+import { Schedule } from './schedules/base'
 
 export class Schedules {
   private schedules: Schedule[]

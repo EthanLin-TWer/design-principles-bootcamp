@@ -1,7 +1,7 @@
 import flatMap from 'lodash/flatMap'
 
 import { Bird } from './animals/base'
-import { Schedules } from './schedules/schedules'
+import { Schedules } from './schedules'
 
 export class Migrators {
   private schedules: Schedules
