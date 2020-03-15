@@ -73,7 +73,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged || echo 'lint failed but git commit still proceeding...'"
+      "pre-commit": "lint-staged || echo 'lint failed but git commit still proceeding...'",
+      "pre-push": "npm run lint && npm test"
     }
   },
   "lint-staged": {
