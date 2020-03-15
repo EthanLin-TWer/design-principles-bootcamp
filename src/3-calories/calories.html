@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>重构初阶</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+  <body>
+    <style type="text/css">
+      input[type='text'] {
+        width: 50px;
+        color: green;
+        text-align: right;
+      }
+      div {
+        margin: 5px;
+      }
+    </style>
+    <div>
+      <div>
+        <label>性别：</label>
+        <label
+          ><input
+            name="sex"
+            type="radio"
+            checked="checked"
+            value="0"
+          />男</label
+        >
+        <label><input name="sex" type="radio" value="1" />女</label>
+      </div>
+      <div>
+        <label>体重：</label>
+        <input type="text" name="weight" value="110" />
+        <label>磅</label>
+      </div>
+      <div>
+        <label>身高：</label>
+        <input type="text" name="height_of_feet" value="5" />
+        <label>尺</label>
+        <input type="text" name="height_of_inch" value="1" />
+        <label>寸</label>
+      </div>
+      <div>
+        <label>年龄：</label>
+        <input type="text" name="age" value="12" />
+        <label>岁</label>
+      </div>
+      <div>
+        <button id="calculate" type="button">计算</button>
+        <label>&nbsp;推荐每日消耗热量：</label>
+        <label name="recommanded_calories">0</label>
+        <label>卡</label>
+      </div>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $('#calculate').click(function() {
+          var sex = $('input[name="sex"]:checked').val()
+          var calories = 0
+
+          if (sex == '0') {
+            calories =
+              66 +
+              6.3 * $('input[name="weight"]').val() +
+              12.9 *
+                ($('input[name="height_of_feet"]').val() * 12 +
+                  parseInt($('input[name="height_of_inch"]').val())) -
+              6.8 * $('input[name="age"]').val()
+          } else {
+            calories =
+              655 +
+              4.3 * $('input[name="weight"]').val() +
+              4.7 *
+                ($('input[name="height_of_feet"]').val() * 12 +
+                  parseInt($('input[name="height_of_inch"]').val())) -
+              4.7 * $('input[name="age"]').val()
+          }
+
+          $('label[name="recommanded_calories"]').html(calories.toFixed(1))
+        })
+      })
+    </script>
+  </body>
+</html>

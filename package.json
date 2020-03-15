@@ -7,7 +7,8 @@
     "lint": "eslint src --ext .ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "jest --coverage --verbose"
+    "test:ci": "jest --coverage --verbose",
+    "run": "open src/3-calories/calories.html"
   },
   "author": "Linesh",
   "license": "MIT",
