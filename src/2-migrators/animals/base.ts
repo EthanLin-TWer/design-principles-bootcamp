@@ -19,5 +19,9 @@ export abstract class Bird {
     return this._schedules
   }
 
+  protected addSchedules(schedules: Schedule[]): void {
+    this._schedules.push(...schedules)
+  }
+
   abstract getName(): string
 }

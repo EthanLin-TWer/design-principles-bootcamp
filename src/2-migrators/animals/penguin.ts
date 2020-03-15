@@ -4,7 +4,8 @@ import { Building } from '../schedules/building'
 
 export class Penguin extends Bird {
   constructor() {
-    super([new Swimming('Penguin'), new Building('Penguin')])
+    super()
+    this.addSchedules([new Swimming('Penguin'), new Building('Penguin')])
   }
 
   public getName() {

@@ -5,7 +5,8 @@ import { Programming } from '../schedules/programming'
 
 export class WildGoose extends Bird {
   constructor() {
-    super([
+    super()
+    this.addSchedules([
       new Flying('WildGoose'),
       new Swimming('WildGoose'),
       new Programming('WildGoose'),
