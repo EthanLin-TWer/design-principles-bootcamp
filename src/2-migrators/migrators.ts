@@ -16,7 +16,6 @@ export class Migrators {
   public printScheduling(): string[] {
     return [
       ...this.animals.map((animal) => animal.eating()),
-      ...this.animals.map((animal) => animal.walking()),
       ...this.schedules.list(),
     ].filter((nonEmpty) => nonEmpty)
   }
