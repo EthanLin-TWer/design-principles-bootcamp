@@ -9,11 +9,11 @@ export class Schedule {
     this.activity = activity
   }
 
-  print() {
+  public print(): string {
     return `It's ${this.timeIn24Hours}:00, I'm ${this.attendee}, I'm ${this.activity}`
   }
 
-  isBefore(schedule: Schedule) {
+  public isBefore(schedule: Schedule): boolean {
     return this.timeIn24Hours < schedule.timeIn24Hours
   }
 }

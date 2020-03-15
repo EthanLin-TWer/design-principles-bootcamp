@@ -12,7 +12,7 @@ export abstract class Bird {
     this._schedules = basicSchedules.concat(schedules)
   }
 
-  getSchedules(): Schedule[] {
+  public getSchedules(): Schedule[] {
     return this._schedules
   }
 

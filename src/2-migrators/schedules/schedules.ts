@@ -7,10 +7,10 @@ export class Schedules {
     this.schedules = schedules
   }
 
-  list(): string[] {
+  public list(): string[] {
     return this.schedules
       .sort(this.byScheduleTimeAscendingly)
-      .map((schedule) => schedule.print())
+      .map((schedule: Schedule) => schedule.print())
   }
 
   private byScheduleTimeAscendingly(schedule, another) {
