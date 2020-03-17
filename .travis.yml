@@ -1,5 +1,5 @@
 node_js:
-  - 13
+  - "node"
 install:
   - npm ci
 script:
@@ -7,4 +7,4 @@ script:
   - npm run test:ci
 cache:
   directories:
-    - 'node_modules'
+    - "node_modules"
