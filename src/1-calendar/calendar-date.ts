@@ -9,7 +9,7 @@ export class CalendarDate {
   constructor(dateInYYYYmmDD: string) {
     const date = new Date(dateInYYYYmmDD);
     const year: Year = new Year(date.getFullYear());
-w    const month: Month = Month.valueOf(date.getMonth() + 1);
+    const month: Month = Month.valueOf(date.getMonth() + 1);
 
     this.day = new Day(date.getDate(), month, year);
     this.daysInTheWeek = date.getDay();
