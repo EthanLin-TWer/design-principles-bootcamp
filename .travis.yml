@@ -1,10 +1,11 @@
 node_js:
-  - "node"
+  - 'node'
 install:
   - npm ci
 script:
+  - cat src/1-calendar/calendar.ts
   - npm run lint
   - npm run test:ci
 cache:
   directories:
-    - "node_modules"
+    - 'node_modules'
