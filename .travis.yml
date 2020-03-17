@@ -1,9 +1,8 @@
 node_js:
-  - 'node'
+  - 13
 install:
   - npm ci
 script:
-  - cat src/1-calendar/calendar.ts
   - npm run lint
   - npm run test:ci
 cache:
