@@ -1,7 +1,7 @@
-import { Schedule } from './base'
+import { Schedule } from './base';
 
 export class Performing extends Schedule {
   constructor(attendee: string) {
-    super(attendee, 9, 'performing')
+    super(attendee, 9, 'performing');
   }
 }

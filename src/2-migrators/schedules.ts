@@ -1,19 +1,19 @@
-import { Schedule } from './schedules/base'
+import { Schedule } from './schedules/base';
 
 export class Schedules {
-  private schedules: Schedule[]
+  private schedules: Schedule[];
 
   constructor(schedules: Schedule[]) {
-    this.schedules = schedules
+    this.schedules = schedules;
   }
 
   public list(): string[] {
     return this.schedules
       .sort(this.byScheduleTimeAscendingly)
-      .map((schedule: Schedule) => schedule.print())
+      .map((schedule: Schedule) => schedule.print());
   }
 
   private byScheduleTimeAscendingly(schedule, another) {
-    return schedule.isBefore(another) ? -1 : 1
+    return schedule.isBefore(another) ? -1 : 1;
   }
 }

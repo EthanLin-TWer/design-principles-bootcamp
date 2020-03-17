@@ -1,17 +1,17 @@
-import { Bird } from './base'
-import { Flying } from '../schedules/flying'
-import { Programming } from '../schedules/programming'
+import { Bird } from './base';
+import { Flying } from '../schedules/flying';
+import { Programming } from '../schedules/programming';
 
 export class Swallow extends Bird {
   constructor() {
-    super()
+    super();
     this.addSchedules([
       new Flying(this.getName()),
       new Programming(this.getName()),
-    ])
+    ]);
   }
 
   public getName() {
-    return 'Swallow'
+    return 'Swallow';
   }
 }
