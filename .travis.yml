@@ -1,5 +1,7 @@
 node_js:
-  - "node"
+  - 'node'
+before_install:
+  - npm i -g typescript
 install:
   - npm ci
 script:
@@ -7,4 +9,4 @@ script:
   - npm run test:ci
 cache:
   directories:
-    - "node_modules"
+    - 'node_modules'
