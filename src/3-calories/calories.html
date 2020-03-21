@@ -57,6 +57,18 @@
     </div>
 
     <script>
+      function calculateCalories(sex, weight, feet, inch, age) {
+        if (sex == '0') {
+          return (
+            66 + 6.3 * weight + 12.9 * (feet * 12 + parseInt(inch)) - 6.8 * age
+          )
+        }
+
+        return (
+          655 + 4.3 * weight + 4.7 * (feet * 12 + parseInt(inch)) - 4.7 * age
+        )
+      }
+
       $(document).ready(function() {
         $('#calculate').click(function() {
           const sex = $('input[name="sex"]:checked').val()
@@ -64,22 +76,8 @@
           const feet = $('input[name="height_of_feet"]').val()
           const inch = $('input[name="height_of_inch"]').val()
           const age = $('input[name="age"]').val()
-          let calories = 0
 
-          if (sex == '0') {
-            calories =
-              66 +
-              6.3 * weight +
-              12.9 * (feet * 12 + parseInt(inch)) -
-              6.8 * age
-          } else {
-            calories =
-              655 +
-              4.3 * weight +
-              4.7 * (feet * 12 + parseInt(inch)) -
-              4.7 * age
-          }
-
+          const calories = calculateCalories(sex, weight, feet, inch, age)
           $('label[name="recommanded_calories"]').html(calories.toFixed(1))
         })
       })
