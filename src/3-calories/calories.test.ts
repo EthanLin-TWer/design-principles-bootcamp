@@ -1,6 +1,11 @@
 import puppeteer, { Browser } from 'puppeteer'
 import StaticServer from 'static-server'
 
+enum Sex {
+  MALE,
+  FEMALE,
+}
+
 describe('calories', () => {
   let server
   let browser: Browser
@@ -24,7 +29,14 @@ describe('calories', () => {
     await browser.close()
   })
 
-  it('e2e testing', async () => {
+  async function testCase(
+    gender: Sex,
+    weight: string,
+    feet: string,
+    inch: string,
+    age: string,
+    expected: string
+  ) {
     const page = await browser.newPage()
     await page.goto(`http://localhost:${port}/${fileName}`, {
       waitUntil: 'load',
@@ -33,15 +45,16 @@ describe('calories', () => {
     // select sex
     await page.evaluate(
       (argument) => document.querySelector(argument).click(),
-      '#sex-male'
+      `#${gender === Sex.MALE ? 'sex-male' : 'sex-female'}`
     )
+
     // enter weight
     const weightInputId = 'input[name="weight"]'
     await page.evaluate(
       (argument) => (document.querySelector(argument).value = ''),
       weightInputId
     )
-    await page.type(weightInputId, '120')
+    await page.type(weightInputId, weight)
 
     // enter height - feet
     const feetInputId = 'input[name="height_of_feet"]'
@@ -49,7 +62,7 @@ describe('calories', () => {
       (argument) => (document.querySelector(argument).value = ''),
       feetInputId
     )
-    await page.type(feetInputId, '4')
+    await page.type(feetInputId, feet)
 
     // enter height - feet
     const inchInputId = 'input[name="height_of_inch"]'
@@ -57,7 +70,7 @@ describe('calories', () => {
       (argument) => (document.querySelector(argument).value = ''),
       inchInputId
     )
-    await page.type(inchInputId, '2')
+    await page.type(inchInputId, inch)
 
     // enter age
     const ageInputId = 'input[name="age"]'
@@ -65,7 +78,7 @@ describe('calories', () => {
       (argument) => (document.querySelector(argument).value = ''),
       ageInputId
     )
-    await page.type(ageInputId, '18')
+    await page.type(ageInputId, age)
 
     // click calculate
     await page.evaluate(
@@ -73,7 +86,8 @@ describe('calories', () => {
       'button#calculate'
     )
 
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    // wait for a moment for calculation result to be updated to DOM
+    await new Promise((resolve) => setTimeout(resolve, 200))
 
     // expect output result
     const result = await page.evaluate(
@@ -81,6 +95,11 @@ describe('calories', () => {
       'label[name="recommanded_calories"]'
     )
 
-    expect(result).toEqual('1344.6')
+    expect(result).toEqual(expected)
+  }
+
+  it('e2e testing', async () => {
+    //               sex     weight feet inch age   expected
+    await testCase(Sex.MALE, '120', '4', '2', '18', '1344.6')
   })
 })
