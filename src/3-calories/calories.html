@@ -59,8 +59,8 @@
     <script>
       $(document).ready(function() {
         $('#calculate').click(function() {
-          var sex = $('input[name="sex"]:checked').val()
-          var calories = 0
+          const sex = $('input[name="sex"]:checked').val()
+          let calories = 0
 
           if (sex == '0') {
             calories =
