@@ -98,15 +98,21 @@ describe('calories', () => {
     expect(result).toEqual(expected)
   }
 
-  it('e2e testing', async () => {
+  it('male calories calculation', async () => {
     //               sex     weight feet inch age   expected
     await testCase(Sex.MALE, '120', '4', '2', '18', '1344.6')
     await testCase(Sex.MALE, '130', '4', '1', '25', '1347.1')
     await testCase(Sex.MALE, '130', '5', '3', '28', '1507.3')
+    await testCase(Sex.MALE, '110', '5', '1', '12', '1464.3')
+    await testCase(Sex.MALE, '180', '7', '2', '42', '2023.8')
+  })
 
+  it('female calories calculation', async () => {
     //               sex       weight feet inch age   expected
     await testCase(Sex.FEMALE, '120', '4', '2', '18', '1321.4')
     await testCase(Sex.FEMALE, '140', '4', '3', '25', '1379.2')
     await testCase(Sex.FEMALE, '100', '5', '0', '28', '1235.4')
+    await testCase(Sex.FEMALE, '110', '5', '1', '12', '1358.3')
+    await testCase(Sex.FEMALE, '120', '6', '0', '39', '1326.1')
   })
 })
