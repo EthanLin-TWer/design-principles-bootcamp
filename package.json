@@ -6,8 +6,8 @@
   "scripts": {
     "lint": "eslint src --ext .ts",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --coverage --verbose",
+    "test:watch": "npm test -- --watch",
+    "test:ci": "npm test -- --coverage --verbose",
     "run": "open src/3-calories/calories.html"
   },
   "author": "Linesh",
@@ -40,6 +40,9 @@
   "jest": {
     "testMatch": [
       "<rootDir>/src/**/*.test.(js|ts)"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
     ],
     "transform": {
       ".js": "babel-jest",

@@ -14,7 +14,8 @@ describe('calories', () => {
 
   beforeAll(() => {
     const configs = { rootPath: __dirname, port, cors: '*' }
-    server = new StaticServer(configs).start()
+    server = new StaticServer(configs)
+    server.start()
   })
 
   afterAll(() => {
