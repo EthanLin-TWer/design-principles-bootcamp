@@ -75,28 +75,15 @@
         }
       }
 
-      class FemaleCalculator extends CaloriesCalculator {
-        constructor() {
-          super(66, 6.3, 12.9, 6.8)
-        }
-
-        calculate(weight, feet, inch, age) {
-          const baseCalories = 655
-          const weightFactor = 4.3
-          const heightFactor = 4.7
-          const ageFactor = 4.7
-          return (
-            baseCalories +
-            weightFactor * weight +
-            heightFactor * (feet * 12 + parseInt(inch)) -
-            ageFactor * age
-          )
-        }
-      }
-
       class MaleCalculator extends CaloriesCalculator {
         constructor() {
           super(66, 6.3, 12.9, 6.8)
+        }
+      }
+
+      class FemaleCalculator extends CaloriesCalculator {
+        constructor() {
+          super(655, 4.3, 4.7, 4.7)
         }
       }
 
