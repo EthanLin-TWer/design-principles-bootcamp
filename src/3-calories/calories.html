@@ -99,12 +99,8 @@
         }
       }
       function calculateCalories(sex, weight, feet, inch, age) {
-        return CaloriesCalculatorFactory.create(sex).calculate(
-          weight,
-          feet,
-          inch,
-          age
-        )
+        const calculator = CaloriesCalculatorFactory.create(sex)
+        return calculator.calculate(weight, feet, inch, age)
       }
 
       $(document).ready(function() {
