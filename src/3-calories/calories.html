@@ -89,11 +89,22 @@
 
       class CaloriesCalculatorFactory {
         static create(sex) {
-          if (sex == '0') {
-            return new MaleCalculator()
+          switch (sex) {
+            case '0': return new MaleCalculator()
+            case '1': return new FemaleCalculator()
+            case 'x0': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x1': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x2': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x3': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x4': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x5': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x6': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x7': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x8': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x9': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            case 'x10': return new CaloriesCalculator(66, 4.3, 4.4, 5.2)
+            default: throw new Error(`Not supported gender: ${sex}`)
           }
-
-          return new FemaleCalculator()
         }
       }
 
