@@ -74,30 +74,36 @@
         }
       }
 
+      class FemaleCalculator extends CaloriesCalculator {
+        calculate(weight, feet, inch, age) {
+          const baseCalories = 655
+          const weightFactor = 4.3
+          const heightFactor = 4.7
+          const ageFactor = 4.7
+          return (
+            baseCalories +
+            weightFactor * weight +
+            heightFactor * (feet * 12 + parseInt(inch)) -
+            ageFactor * age
+          )
+        }
+      }
+
       class CaloriesCalculatorFactory {
         static create(sex) {
-          return new CaloriesCalculator()
+          if (sex == '0') {
+            return new CaloriesCalculator()
+          }
+
+          return new FemaleCalculator()
         }
       }
       function calculateCalories(sex, weight, feet, inch, age) {
-        if (sex == '0') {
-          return CaloriesCalculatorFactory.create(sex).calculate(
-            weight,
-            feet,
-            inch,
-            age
-          )
-        }
-
-        const baseCalories = 655
-        const weightFactor = 4.3
-        const heightFactor = 4.7
-        const ageFactor = 4.7
-        return (
-          baseCalories +
-          weightFactor * weight +
-          heightFactor * (feet * 12 + parseInt(inch)) -
-          ageFactor * age
+        return CaloriesCalculatorFactory.create(sex).calculate(
+          weight,
+          feet,
+          inch,
+          age
         )
       }
 
