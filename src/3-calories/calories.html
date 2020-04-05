@@ -89,15 +89,18 @@
         }
       }
 
+      class MaleCalculator extends CaloriesCalculator {}
+
       class CaloriesCalculatorFactory {
         static create(sex) {
           if (sex == '0') {
-            return new CaloriesCalculator()
+            return new MaleCalculator()
           }
 
           return new FemaleCalculator()
         }
       }
+
       function calculateCalories(sex, weight, feet, inch, age) {
         const calculator = CaloriesCalculatorFactory.create(sex)
         return calculator.calculate(weight, feet, inch, age)
