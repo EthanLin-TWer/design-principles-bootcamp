@@ -58,7 +58,7 @@
 
     <script>
       class CaloriesCalculator {
-        constructor(baseCalories, weightFactor, heightFactor, ageFactor) {
+        constructor() {
           this.baseCalories = 66
           this.weightFactor = 6.3
           this.heightFactor = 12.9
@@ -76,6 +76,10 @@
       }
 
       class FemaleCalculator extends CaloriesCalculator {
+        constructor() {
+          super()
+        }
+
         calculate(weight, feet, inch, age) {
           const baseCalories = 655
           const weightFactor = 4.3
@@ -90,7 +94,11 @@
         }
       }
 
-      class MaleCalculator extends CaloriesCalculator {}
+      class MaleCalculator extends CaloriesCalculator {
+        constructor() {
+          super()
+        }
+      }
 
       class CaloriesCalculatorFactory {
         static create(sex) {
