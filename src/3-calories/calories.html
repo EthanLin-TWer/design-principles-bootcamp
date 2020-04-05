@@ -66,15 +66,11 @@
         }
 
         calculate(weight, feet, inch, age) {
-          const baseCalories = this.baseCalories
-          const weightFactor = this.weightFactor
-          const heightFactor = this.heightFactor
-          const ageFactor = this.ageFactor
           return (
-            baseCalories +
-            weightFactor * weight +
-            heightFactor * (feet * 12 + parseInt(inch)) -
-            ageFactor * age
+            this.baseCalories +
+            this.weightFactor * weight +
+            this.heightFactor * (feet * 12 + parseInt(inch)) -
+            this.ageFactor * age
           )
         }
       }
