@@ -58,13 +58,18 @@
 
     <script>
       class CaloriesCalculator {
-        constructor() {}
+        constructor(baseCalories, weightFactor, heightFactor, ageFactor) {
+          this.baseCalories = 66
+          this.weightFactor = 6.3
+          this.heightFactor = 12.9
+          this.ageFactor = 6.8
+        }
 
         calculate(weight, feet, inch, age) {
-          const baseCalories = 66
-          const weightFactor = 6.3
-          const heightFactor = 12.9
-          const ageFactor = 6.8
+          const baseCalories = this.baseCalories
+          const weightFactor = this.weightFactor
+          const heightFactor = this.heightFactor
+          const ageFactor = this.ageFactor
           return (
             baseCalories +
             weightFactor * weight +
