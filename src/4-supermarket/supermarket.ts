@@ -5,6 +5,6 @@ export class Calculator {
       0
     )
 
-    return totalPrice
+    return totalPrice - (totalPrice > 50 ? 5 : 0)
   }
 }
