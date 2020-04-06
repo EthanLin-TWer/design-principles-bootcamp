@@ -35,5 +35,11 @@ describe('SuperMarket', () => {
 
       expect(result).toEqual(65 - 5)
     })
+
+    it('should get ￥15 cash back when total price is more than ￥100', () => {
+      const result = new Calculator().calculate(products)
+
+      expect(result).toEqual(225 - 15)
+    })
   })
 })

@@ -5,6 +5,7 @@ export class Calculator {
       0
     )
 
-    return totalPrice - (totalPrice > 50 ? 5 : 0)
+    const discount = totalPrice > 100 ? 15 : totalPrice > 50 ? 5 : 0
+    return totalPrice - discount
   }
 }
