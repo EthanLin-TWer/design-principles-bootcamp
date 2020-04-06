@@ -37,6 +37,17 @@ describe('SuperMarket', () => {
     })
 
     it('should get ￥15 cash back when total price is more than ￥100', () => {
+      const result = new Calculator().calculate([
+        { name: 'wine', category: 'drink', price: 15, quantity: 1 },
+        { name: 'cola', category: 'drink', price: 5, quantity: 2 },
+        { name: 'pork', category: 'meat', price: 25, quantity: 2 },
+        { name: 'chicken', category: 'meat', price: 10, quantity: 5 },
+      ])
+
+      expect(result).toEqual(125 - 15)
+    })
+
+    it('should get at most ￥15 cash back', () => {
       const result = new Calculator().calculate(products)
 
       expect(result).toEqual(225 - 15)
