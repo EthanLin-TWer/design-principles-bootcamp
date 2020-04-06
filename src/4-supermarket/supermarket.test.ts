@@ -17,7 +17,7 @@ describe('SuperMarket', () => {
     })
   })
 
-  describe('task 2: cash back', () => {
+  describe.skip('task 2: cash back', () => {
     it('should not get any cash back when total price is less than ￥50', () => {
       const result = new Calculator().calculate([
         { name: 'wine', category: 'drink', price: 15, quantity: 1 },
@@ -51,6 +51,17 @@ describe('SuperMarket', () => {
       const result = new Calculator().calculate(products)
 
       expect(result).toEqual(225 - 15)
+    })
+  })
+
+  describe('task 3: 20% off for drink only', () => {
+    it('should get 20% off for drink', () => {
+      const result = new Calculator().calculate([
+        { name: 'wine', category: 'drink', price: 15, quantity: 1 },
+        { name: 'cola', category: 'drink', price: 5, quantity: 2 },
+      ])
+
+      expect(result).toEqual(20)
     })
   })
 })
