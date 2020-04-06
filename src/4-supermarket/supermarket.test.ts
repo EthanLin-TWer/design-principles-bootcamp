@@ -71,5 +71,13 @@ describe('SuperMarket', () => {
 
       expect(result).toEqual(25 * 0.8)
     })
+
+    it('should not get any discount when products other than drinks', () => {
+      const result = new Calculator().calculate([
+        { name: 'pork', category: 'meat', price: 25, quantity: 2 },
+      ])
+
+      expect(result).toEqual(50)
+    })
   })
 })

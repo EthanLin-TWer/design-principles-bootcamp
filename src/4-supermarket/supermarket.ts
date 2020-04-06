@@ -1,9 +1,12 @@
 export class Calculator {
   calculate(products: any[]) {
-    const totalPrice = products.reduce(
-      (result, product) => result + product.price * product.quantity,
+    return products.reduce(
+      (result, product) =>
+        result +
+        product.price *
+          product.quantity *
+          (product.category === 'drink' ? 0.8 : 1),
       0
     )
-    return totalPrice * 0.8
   }
 }
