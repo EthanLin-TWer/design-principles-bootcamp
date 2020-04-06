@@ -57,11 +57,19 @@ describe('SuperMarket', () => {
   describe('task 3: 20% off for drink only', () => {
     it('should get 20% off for drink', () => {
       const result = new Calculator().calculate([
+        { name: 'cola', category: 'drink', price: 5, quantity: 2 },
+      ])
+
+      expect(result).toEqual(10 * 0.8)
+    })
+
+    it('should get 20% off for all drinks when you buy multiple drinks', () => {
+      const result = new Calculator().calculate([
         { name: 'wine', category: 'drink', price: 15, quantity: 1 },
         { name: 'cola', category: 'drink', price: 5, quantity: 2 },
       ])
 
-      expect(result).toEqual(20)
+      expect(result).toEqual(25 * 0.8)
     })
   })
 })
