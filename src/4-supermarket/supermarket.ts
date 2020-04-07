@@ -1,6 +1,16 @@
+import groupBy from 'lodash/groupBy'
+
 export class Calculator {
   calculate(products: any[]) {
-    return this.calculateTotalPrice(products) - this.cashBack(products)
+    return (
+      // @ts-ignore
+      Object.values(groupBy(products, 'category')).reduce(
+        (result, category) =>
+          // @ts-ignore
+          this.calculateTotalPrice(category) + result,
+        0
+      ) - this.cashBack(products)
+    )
   }
 
   private calculateTotalPrice(products: any[]) {
