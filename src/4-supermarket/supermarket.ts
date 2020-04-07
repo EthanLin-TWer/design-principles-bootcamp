@@ -11,7 +11,7 @@ export class Calculator {
   }
 
   private discount({ category }) {
-    return 1
+    return category === 'electronics' ? 0.8 : 1
   }
 
   private cashBack(products) {

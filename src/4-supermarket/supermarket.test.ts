@@ -137,7 +137,23 @@ describe('SuperMarket', () => {
       expect(result).toEqual(20)
     })
 
-    it('acceptance test according to project task 6', () => {
+    it.skip('acceptance test according to project task 6', () => {
+      const result = new Calculator().calculate(products)
+
+      expect(result).toEqual(225 - (2.5 + 2))
+    })
+  })
+
+  describe('task 6: 20% off for electronics', () => {
+    it('should get 20% off for electronics', () => {
+      const result = new Calculator().calculate([
+        { name: 'light', category: 'electronics', price: 100, quantity: 1 },
+      ])
+
+      expect(result).toEqual(100 * 0.8)
+    })
+
+    it.skip('acceptance test according to project task 6', () => {
       const result = new Calculator().calculate(products)
 
       expect(result).toEqual(225 - (2.5 + 2))
