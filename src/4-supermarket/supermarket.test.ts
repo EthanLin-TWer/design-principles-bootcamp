@@ -54,7 +54,7 @@ describe('SuperMarket', () => {
     })
   })
 
-  describe('task 3: 20% off for drink only', () => {
+  describe.skip('task 3: 20% off for drink only', () => {
     it('should get 20% off for drink', () => {
       const result = new Calculator().calculate([
         { name: 'cola', category: 'drink', price: 5, quantity: 2 },
@@ -120,7 +120,24 @@ describe('SuperMarket', () => {
       expect(result).toEqual(25)
     })
 
-    it('acceptance test according to project task 5', () => {
+    it.skip('acceptance test according to project task 5 - skipped due to no longer the case in task 6', () => {
+      const result = new Calculator().calculate(products)
+
+      expect(result).toEqual(225 - (5 + 2))
+    })
+  })
+
+  describe('task 6: 50% off for the second drink', () => {
+    it.skip('should not get any cash back for pork', () => {
+      const result = new Calculator().calculate([
+        { name: 'wine', category: 'drink', price: 15, quantity: 1 },
+        { name: 'cola', category: 'drink', price: 5, quantity: 1 },
+      ])
+
+      expect(result).toEqual(20)
+    })
+
+    it.skip('acceptance test according to project task 6', () => {
       const result = new Calculator().calculate(products)
 
       expect(result).toEqual(225 - (5 + 2))
