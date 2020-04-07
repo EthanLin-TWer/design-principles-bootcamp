@@ -128,7 +128,7 @@ describe('SuperMarket', () => {
   })
 
   describe('task 6: 50% off for the second drink', () => {
-    it.skip('should not get any cash back for pork', () => {
+    it('should not get any cash back for pork', () => {
       const result = new Calculator().calculate([
         { name: 'wine', category: 'drink', price: 15, quantity: 1 },
         { name: 'cola', category: 'drink', price: 5, quantity: 1 },

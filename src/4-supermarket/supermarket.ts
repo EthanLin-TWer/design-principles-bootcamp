@@ -11,7 +11,7 @@ export class Calculator {
   }
 
   private discount({ category }) {
-    return category === 'drink' ? 0.8 : 1
+    return 1
   }
 
   private cashBack(products) {
