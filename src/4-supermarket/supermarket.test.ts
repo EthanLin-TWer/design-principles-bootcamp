@@ -137,10 +137,10 @@ describe('SuperMarket', () => {
       expect(result).toEqual(20)
     })
 
-    it.skip('acceptance test according to project task 6', () => {
+    it('acceptance test according to project task 6', () => {
       const result = new Calculator().calculate(products)
 
-      expect(result).toEqual(225 - (5 + 2))
+      expect(result).toEqual(225 - (2.5 + 2))
     })
   })
 })
