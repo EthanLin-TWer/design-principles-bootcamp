@@ -79,5 +79,11 @@ describe('SuperMarket', () => {
 
       expect(result).toEqual(50)
     })
+
+    it('acceptance test according to project', () => {
+      const result = new Calculator().calculate(products)
+
+      expect(result).toEqual(225 - 5)
+    })
   })
 })
