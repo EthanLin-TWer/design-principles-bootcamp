@@ -15,6 +15,8 @@ export class Calculator {
   }
 
   private cashBack(products) {
+    let promotion = 0
+
     // for meat
     const meats = products.filter(
       ({ category, name }) => category === 'meat' && name !== 'pork'
@@ -22,8 +24,18 @@ export class Calculator {
     const totalPrice = this.calculateTotalPrice(meats)
 
     // for drink
+    if (products.filter(({ category }) => category === 'drink')) {
+      const drinks = products.filter(({ category }) => category === 'drink')
+      drinks.forEach((drink) => {
+        const ofSameKinds = drinks.filter(({ name }) => drink.name === name)
+        if (
+          ofSameKinds.reduce((result, one) => result + one.quantity, 0) >= 2
+        ) {
+          promotion += drink.price * 0.5
+        }
+      })
+    }
 
-    let promotion = 0
     if (totalPrice >= 20) {
       promotion += 2
     }
