@@ -90,7 +90,7 @@ describe('SuperMarket', () => {
   describe('task 4: cash back for meats', () => {
     it('should get ￥2 cash back for meats more than ￥20(inclusive)', () => {
       const result = new Calculator().calculate([
-        { name: 'pork', category: 'meat', price: 20, quantity: 1 },
+        { name: 'chicken', category: 'meat', price: 20, quantity: 1 },
       ])
 
       expect(result).toEqual(20 - 2)
@@ -98,17 +98,32 @@ describe('SuperMarket', () => {
 
     it('should get ￥8 cash back for meats more than ￥60(inclusive)', () => {
       const result = new Calculator().calculate([
-        { name: 'pork', category: 'meat', price: 20, quantity: 1 },
-        { name: 'chicken', category: 'meat', price: 15, quantity: 3 },
+        { name: 'chicken', category: 'meat', price: 15, quantity: 4 },
       ])
 
-      expect(result).toEqual(65 - 8)
+      expect(result).toEqual(60 - 8)
     })
 
-    it('acceptance test according to project', () => {
+    it.skip('acceptance test according to project - skipped due to no longer the case in task 5', () => {
       const result = new Calculator().calculate(products)
 
       expect(result).toEqual(225 - (5 + 8))
+    })
+  })
+
+  describe('task 5: cash back for meats except pork', () => {
+    it('should not get any cash back for pork', () => {
+      const result = new Calculator().calculate([
+        { name: 'pork', category: 'meat', price: 25, quantity: 1 },
+      ])
+
+      expect(result).toEqual(25)
+    })
+
+    it('acceptance test according to project task 5', () => {
+      const result = new Calculator().calculate(products)
+
+      expect(result).toEqual(225 - (5 + 2))
     })
   })
 })

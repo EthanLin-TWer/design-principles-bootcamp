@@ -15,7 +15,9 @@ export class Calculator {
   }
 
   private cashBack(products) {
-    const meats = products.filter(({ category }) => category === 'meat')
+    const meats = products.filter(
+      ({ category, name }) => category === 'meat' && name !== 'pork'
+    )
     const totalPrice = this.calculateTotalPrice(meats)
 
     if (totalPrice >= 60) {
