@@ -95,5 +95,14 @@ describe('SuperMarket', () => {
 
       expect(result).toEqual(20 - 2)
     })
+
+    it('should get ￥8 cash back for meats more than ￥60(inclusive)', () => {
+      const result = new Calculator().calculate([
+        { name: 'pork', category: 'meat', price: 20, quantity: 1 },
+        { name: 'chicken', category: 'meat', price: 15, quantity: 3 },
+      ])
+
+      expect(result).toEqual(65 - 8)
+    })
   })
 })

@@ -18,6 +18,10 @@ export class Calculator {
     const meats = products.filter(({ category }) => category === 'meat')
     const totalPrice = this.calculateTotalPrice(meats)
 
+    if (totalPrice >= 60) {
+      return 8
+    }
+
     if (totalPrice >= 20) {
       return 2
     }
