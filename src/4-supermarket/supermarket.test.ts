@@ -88,12 +88,12 @@ describe('SuperMarket', () => {
   })
 
   describe('task 4: cash back for meats', () => {
-    it.skip('should get ￥2 cash back for meats more than ￥20', () => {
+    it('should get ￥2 cash back for meats more than ￥20', () => {
       const result = new Calculator().calculate([
-        { name: 'cola', category: 'drink', price: 5, quantity: 2 },
+        { name: 'pork', category: 'meat', price: 25, quantity: 2 },
       ])
 
-      expect(result).toEqual(10 * 0.8)
+      expect(result).toEqual(50 - 2)
     })
   })
 })
