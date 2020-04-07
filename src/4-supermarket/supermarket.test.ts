@@ -86,4 +86,14 @@ describe('SuperMarket', () => {
       expect(result).toEqual(225 - 5)
     })
   })
+
+  describe('task 4: cash back for meats', () => {
+    it('should get ￥2 cash back for meats more than ￥20', () => {
+      const result = new Calculator().calculate([
+        { name: 'cola', category: 'drink', price: 5, quantity: 2 },
+      ])
+
+      expect(result).toEqual(10 * 0.8)
+    })
+  })
 })
